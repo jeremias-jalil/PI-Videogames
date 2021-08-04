@@ -3,9 +3,6 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 
 
-const platform = ['PC', 'PlayStation 4', 'Xbox One', 'Nintendo Switch', 'iOS', 'Android']
-
-
 module.exports = (sequelize) => {
   // defino el modelo
   const Videogame = sequelize.define('videogame', {

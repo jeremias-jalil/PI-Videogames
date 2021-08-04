@@ -1,0 +1,17 @@
+.contenedor{
+    display: flex;
+    justify-content: flex-end;
+    
+    margin: 10px;
+    
+}
+
+.ico{
+    composes: primaryColor from "../../variables.css";
+    margin: 5px;
+    font-size: 20px;
+}
+
+.ico:hover{
+    color:violet
+}

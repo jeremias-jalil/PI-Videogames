@@ -1,0 +1,35 @@
+.contenedor{
+    background-color: chocolate;
+    margin: 10px;
+}
+
+.list{
+    display: flex;
+    justify-content: left;
+}
+
+.number{
+    color:white;
+    padding: 10px;
+    list-style:none;
+    font-size: 20px;
+}
+
+.number:hover{
+    color:blueviolet;
+    cursor:pointer
+}
+
+.numberPage{
+    color:blueviolet;
+    padding: 10px;
+    list-style:none;
+    font-size: 20px;
+}
+
+.none{
+    display: none;
+    padding: 10px;
+    list-style:none;
+    font-size: 20px;
+}

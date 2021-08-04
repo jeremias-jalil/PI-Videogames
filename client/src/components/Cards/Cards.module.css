@@ -1,0 +1,27 @@
+.contenedor{
+    height: 100%;
+    background-color: blue;
+    color: white;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+    grid-gap: 20px;
+    
+    }
+    
+.cards{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap:wrap;
+    grid-column: 1/1;
+    grid-row:2/2
+}
+
+.pagination{
+    grid-column: 1/1;
+    grid-row:3/3
+}
+.order{
+    grid-column: 1/1;
+    grid-row:1/1
+}

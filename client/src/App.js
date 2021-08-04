@@ -1,10 +1,18 @@
-import './App.css';
+import React from 'react';
+
+import style from './App.module.css';
+
+//import { Route } from 'react-router-dom';
+
+import Home from './pages/Home/Home'
 
 function App() {
   return (
-    <div className="App">
-      <h1>Henry Videogames</h1>
+    
+    <div className={style.div}>
+      <Home/>
     </div>
+    
   );
 }
 
