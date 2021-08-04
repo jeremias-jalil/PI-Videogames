@@ -11,8 +11,10 @@
     
 .cards{
     display: flex;
-    justify-content: space-around;
-    flex-wrap:wrap;
+    flex-flow: column wrap;
+    max-height: 800px;
+    margin-left: -8px; /* Adjustment for the gutter */
+    width: 100%;
     grid-column: 1/1;
     grid-row:2/2
 }

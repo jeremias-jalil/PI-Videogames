@@ -1,0 +1,22 @@
+.contenedor{
+    background-color: yellow;
+    color: white;
+    margin: 10px;
+    width: 30%;
+    border-radius: 10px;
+    
+}
+
+.imageCard{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.none{
+    display: none;
+}
+
+.description{
+    color:black
+}

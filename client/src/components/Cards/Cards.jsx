@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import style from './Cards.module.css'
 
-import ShortCard from '../ShortCard/ShortCard'
+import Card from '../Card/Card'
 import Pagination from '../Pagination/Pagination'
 import Order from '../Order/Order';
 
@@ -28,7 +28,7 @@ export default function Cards({ games }) {
                 <Order handlePostPerPage={handlePostPerPage}/>
             </div>
             <div className={style.cards}>
-                {currentGame?.map(e => <ShortCard game={e} />)}
+                {currentGame?.map(e => <Card game={e} key={e.id}/>)}
             </div>
 
             <div className={style.pagination}>
