@@ -1,18 +1,27 @@
 .contenedor{
-    background-color: chocolate;
-    margin: 10px;
+    
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .list{
     display: flex;
     justify-content: left;
+    margin: 0px;
+    padding: 0px;
 }
 
 .number{
     color:white;
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  
     list-style:none;
     font-size: 20px;
+    margin: 0px ;
 }
 
 .number:hover{
@@ -22,9 +31,10 @@
 
 .numberPage{
     color:blueviolet;
-    padding: 10px;
     list-style:none;
     font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .none{

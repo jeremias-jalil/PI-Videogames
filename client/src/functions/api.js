@@ -15,22 +15,22 @@ export async function getAllGameApi(){
 
 export async function getGameByName(name){
     const games = await axios.get(`${BACK_SERVER}/videogames/?${name}`)
-    return games
+    return games.data
 } 
 
 export async function getGameById(id){
     const games = await axios.get(`${BACK_SERVER}/videogames/${id}`)
-    return games
+    return games.data
 } 
 
-export async function getAllGenre(){
+export async function getAllGenreApi(){
     const games = await axios.get(`${BACK_SERVER}/genres`)
-    return games
+    return games.data
 } 
 
-export async function getAllPlatform(){
+export async function getAllPlatformApi(){
     const games = await axios.get(`${BACK_SERVER}/platforms`)
-    return games
+    return games.data
 } 
 
 export async function newGame(data){

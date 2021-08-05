@@ -1,0 +1,16 @@
+.listIcon{
+    display: flex;
+    flex-direction: column;
+}
+
+.icon{
+    color:white
+}
+
+.icon:hover{
+    color:violet
+}
+
+.iconSelected{
+    color:violet
+}
