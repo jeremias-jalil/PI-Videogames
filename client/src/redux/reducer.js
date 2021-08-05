@@ -7,6 +7,7 @@ import {
 
 const initialState = {
     games: [],
+    gamesBackUp:[],
     game: {},
     currentPage: 1,
     loading: false,

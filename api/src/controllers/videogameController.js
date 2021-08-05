@@ -29,8 +29,8 @@ function extractDataApi(game) {
             name: game.name,
             dateRelease: game.released,
             rating: game.rating,
-            plataforms: game.parent_platforms?.map(p => { return { id: p.platform.id, name: p.platform.name } }),
-            genre: game.genres?.map(g => { return { id: g.id, name: g.name } }),
+            platforms: game.parent_platforms?.map(p => { return { id: p.platform.id, name: p.platform.name } }),
+            genres: game.genres?.map(g => { return { id: g.id, name: g.name } }),
             image: game.background_image,
         }
     }
@@ -40,7 +40,7 @@ function extractDataApi(game) {
             id: game.id,
             name: game.title,
             dateRelease: game.release_date,
-            plataforms: game.platform,
+            platforms: game.platform,
             genre: game.genre,
             image: game.thumbnail,
             description: game.description || game.short_description
@@ -213,7 +213,7 @@ async function searchById(search) {
 
 async function addDbGame(data) {
     try {
-        const { name, description, dateRelease, rating, platforms, genres, image } = data   //genres es un array de ID de generos
+        const { name, description, dateRelease, rating, platforms, genres, image } = data   //genre es un array de ID de generos
 
         const game = await Videogame.create({ name, description, dateRelease, rating, platforms, image });
 

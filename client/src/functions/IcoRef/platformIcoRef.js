@@ -3,17 +3,24 @@ import { faPlaystation, faXbox, faApple, faAndroid, faLinux } from "@fortawesome
 
 export default function getIconPlataforms(platforms) {
 
-
     if (platforms) {
-        const iconPlatform = platforms.map(e => getIconPlatformById(e.id))
+        let iconPlatform
+        if (platforms[0]?.id) {
+            iconPlatform = platforms.map(e => getIconPlatformById(e.id))
+        } else {
+            iconPlatform = platforms.map(e => getIconPlatformById(e))
+        }
         return iconPlatform
+    }
+    else {
+        return []
     }
 }
 
 function getIconPlatformById(id) {
-    
+
     const platform = iconReference.filter(e => e.id == id)
-    
+
     return platform[0]
 }
 

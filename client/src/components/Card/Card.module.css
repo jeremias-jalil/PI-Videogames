@@ -18,5 +18,13 @@
 }
 
 .description{
-    color:black
+    color:black;
+    display: flex;
+    flex-direction: column
 }
+
+.icons{
+    display: flex;
+    flex-direction: column
+}
+

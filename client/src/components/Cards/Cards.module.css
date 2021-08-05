@@ -11,9 +11,9 @@
     
 .cards{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;  
-    max-height: 800px;
+    /* max-height: 800px; */
     margin-left: 0px; /* Adjustment for the gutter */
     width: 100%;
     grid-column: 1/3;

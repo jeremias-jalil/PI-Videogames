@@ -1,0 +1,23 @@
+
+.home{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 10vh 100%;
+    grid-auto-rows: minmax(100px, auto);
+    height: 100%;
+  }
+  
+  .topBar{
+      grid-column: 1/3;
+      grid-row:1/1
+  }
+  
+  .leftBar{
+      grid-column: 1/1;
+      grid-row: 2/3
+  }
+  
+  .body{
+      grid-column: 2/3;
+      grid-row:2/3
+  }

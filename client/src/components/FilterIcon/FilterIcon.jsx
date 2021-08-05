@@ -33,7 +33,7 @@ export default function FilterIcon({ title, list, iconConverter, filter }) {
             dispatch(filterBySource(id))
             setSelect(id)
         }
-        if (filter === "Genre") {
+        if (filter === "Genres") {
             dispatch(filterByGenre(id))
             setSelect(id)
         }
@@ -59,8 +59,8 @@ export default function FilterIcon({ title, list, iconConverter, filter }) {
                     <div onClick={() => filterAction(p.id)} className={p.id==select?style.iconSelected:style.icon}>
                         <FontAwesomeIcon icon={p.icon} key={p.id} />
                         <a> {p.name}</a>
-                    </div>
-                ))
+                    </div>)
+                )
                 }
             </div>
         </div>

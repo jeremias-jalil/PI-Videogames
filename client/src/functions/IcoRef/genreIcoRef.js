@@ -1,26 +1,30 @@
-import { faRunning, faWind, faMap,faKhanda, faSearch, faBullseye,
-faCouch, faHotel, faPuzzlePiece, faGhost, faDragon, faCar, faHeadset, faFootballBall,
-faFighterJet, faUsers,faChess,faChalkboardTeacher,faHeart} from "@fortawesome/free-solid-svg-icons";
+import {
+    faRunning, faWind, faMap, faKhanda, faSearch, faBullseye,
+    faCouch, faHotel, faPuzzlePiece, faGhost, faDragon, faCar, faHeadset, faFootballBall,
+    faFighterJet, faUsers, faChess, faChalkboardTeacher, faHeart
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function getIconGenre(genre) {
-
-
     if (genre) {
-        const iconPlatform = genre.map(e => getIconGenreById(e.id))
+        let iconPlatform
+        if (genre[0]?.id) {
+            iconPlatform = genre.map(e => getIconGenreById(e.id))
+        }
+        else {
+            iconPlatform = genre.map(e => getIconGenreById(e))
+        }
         return iconPlatform
+    } else {
+        return []
     }
 }
 
 function getIconGenreById(id) {
-    
+
     const platform = iconReference.filter(e => e.id == id)
-    
+
     return platform[0]
 }
-
-
-
-
 
 const iconReference = [
     {

@@ -44,7 +44,7 @@ export default function Cards({ games }) {
             setTotalGame(games.length)
         }
 
-    }, [platformFilter, genreFilter, sourceFilter, currentPage, loading, orderAlph, orderRating])
+    }, [platformFilter, genreFilter, sourceFilter, currentPage, loading, orderAlph, orderRating, games.length])
 
     function handlePostPerPage(number) {
         setPostPerPage(number)

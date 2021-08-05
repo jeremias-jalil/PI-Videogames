@@ -1,3 +1,5 @@
+
+
 import {
     LOADING, ERROR, PAGE, PLATFORMS, GENRE,
     GET_GAMES, GET_GAMES_BY_NAME, GET_GAMES_BY_ID,
@@ -5,8 +7,7 @@ import {
     ORDER_ALPHABETICALLY_ASC, ORDER_ALPHABETICALLY_DES, ORDER_BY_RATING_ASC, ORDER_BY_RATING_DES
 } from './constants'
 
-import { getAllGameApi, getAllGenreApi, getAllPlatformApi } from '../functions/api'
-
+import { getAllGameApi, getAllGenreApi, getAllPlatformApi, getGameByNameApi, getGameByIdApi } from '../functions/api'
 
 //------------  CONTEXT  -----> LOADING, ERROR, PAGE, PLATFORMS, GENRE,
 
@@ -53,14 +54,65 @@ export function getAllPlatform() {
 
 //------------  GET  --------> GET_GAMES, GET_GAMES_BY_NAME, GET_GAMES_BY_ID
 
-export function getAllGame() {
+
+
+export function getAllGame(gamesBackUp) {
     return (dispatch => {
+        
         dispatch({ type: LOADING })
-        getAllGameApi()
+        if (gamesBackUp.length > 0) {
+            dispatch({
+                type: GET_GAMES,
+                payload: gamesBackUp
+            })
+            dispatch({ type: LOADING })
+        }
+        else {
+            getAllGameApi()
+                .then(res => {
+
+                    dispatch({
+                        type: GET_GAMES,
+                        payload: res
+                    })
+                    dispatch({ type: LOADING })
+                }
+                )
+                .catch(err => dispatch({ type: ERROR, payload: err }))
+        }
+    })
+}
+
+export function getGameByName(name) {
+    return (dispatch => {
+        console.log(name)
+        dispatch({ type: LOADING })
+        getGameByNameApi(name)
             .then(res => {
 
                 dispatch({
-                    type: GET_GAMES,
+                    type: GET_GAMES_BY_NAME,
+                    payload: res
+                })
+                dispatch({ type: LOADING })
+            }
+            )
+            .catch(err => {
+                console.log(err)
+                dispatch({ type: ERROR, payload: err })})
+    })
+
+
+}
+
+export function getGameById(id) {
+    return (dispatch => {
+        dispatch({ type: LOADING })
+        getGameByIdApi(id)
+            .then(res => {
+
+                dispatch({
+                    type: GET_GAMES_BY_ID,
                     payload: res
                 })
                 dispatch({ type: LOADING })
@@ -68,6 +120,7 @@ export function getAllGame() {
             )
             .catch(err => dispatch({ type: ERROR, payload: err }))
     })
+
 }
 
 

@@ -13,12 +13,13 @@ export async function getAllGameApi(){
 
 } 
 
-export async function getGameByName(name){
-    const games = await axios.get(`${BACK_SERVER}/videogames/?${name}`)
+export async function getGameByNameApi(name){
+    console.log(name)
+    const games = await axios.get(`${BACK_SERVER}/videogames/?name=${name}`)
     return games.data
 } 
 
-export async function getGameById(id){
+export async function getGameByIdApi(id){
     const games = await axios.get(`${BACK_SERVER}/videogames/${id}`)
     return games.data
 } 
