@@ -1,6 +1,6 @@
 export function filter(games, platform, genre, source) {
     
-    const gameFiltred = games.filter((game) => (filterGenre(game.genre, genre) && filterPlatform(game.platforms, platform)))
+    const gameFiltred = games.filter((game) => (filterGenre(game.genres, genre) && filterPlatform(game.platforms, platform) && filterSource(game.id,source)))
     
     return gameFiltred
 
@@ -36,3 +36,18 @@ function filterPlatform(platforms, platform) {
     }
 }
 
+function filterSource(id,source){
+    if(source === 1){
+        if(typeof id === 'number'){
+        return true
+        }
+        else return false
+    }
+    if(source === 2){
+        if(typeof id === 'number'){
+        return false
+        }
+        else return true
+    }
+    return true
+}

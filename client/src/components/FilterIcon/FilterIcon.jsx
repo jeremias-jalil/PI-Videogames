@@ -40,8 +40,19 @@ export default function FilterIcon({ title, list, iconConverter, filter }) {
     }
 
 
-    function resetFiltersAction(){
-        dispatch(resetFilters())
+    function resetFiltersAction() {
+        if (filter === "Platforms") {
+            dispatch(filterByPlatform(null))
+
+        }
+        if (filter === "Source") {
+            dispatch(filterBySource(null))
+
+        }
+        if (filter === "Genres") {
+            dispatch(filterByGenre(null))
+
+        }
         setSelect(0)
     }
 
@@ -52,11 +63,11 @@ export default function FilterIcon({ title, list, iconConverter, filter }) {
                 <h3>{title}</h3>
             </div>
             <div>
-                <a onClick={() => resetFiltersAction()}>All</a>
+                <a className={style.icon} onClick={() => resetFiltersAction()}> -- All -- </a>
             </div>
             <div className={style.listIcon}>
                 {ico?.map(p => (
-                    <div onClick={() => filterAction(p.id)} className={p.id==select?style.iconSelected:style.icon}>
+                    <div onClick={() => filterAction(p.id)} className={p.id == select ? style.iconSelected : style.icon}>
                         <FontAwesomeIcon icon={p.icon} key={p.id} />
                         <a> {p.name}</a>
                     </div>)

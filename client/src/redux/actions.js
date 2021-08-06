@@ -58,7 +58,7 @@ export function getAllPlatform() {
 
 export function getAllGame(gamesBackUp) {
     return (dispatch => {
-        
+
         dispatch({ type: LOADING })
         if (gamesBackUp.length > 0) {
             dispatch({
@@ -99,7 +99,8 @@ export function getGameByName(name) {
             )
             .catch(err => {
                 console.log(err)
-                dispatch({ type: ERROR, payload: err })})
+                dispatch({ type: ERROR, payload: err })
+            })
     })
 
 
@@ -137,7 +138,6 @@ export function resetFilters() {
     )
 }
 
-
 export function filterByGenre(id) {
 
     return (
@@ -151,7 +151,13 @@ export function filterByGenre(id) {
 
 export function filterBySource(id) {
 
-    return (dispatch => dispatch({ type: FILTER_BY_SOURCE, payload: id }))
+    return (
+        dispatch => {
+            dispatch({ type: LOADING })
+            dispatch({ type: FILTER_BY_SOURCE, payload: id })
+            dispatch({ type: LOADING })
+        }
+    )
 }
 
 export function filterByPlatform(id) {

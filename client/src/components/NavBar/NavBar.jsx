@@ -5,7 +5,8 @@ import style from './NavBar.module.css'
 
 import { getAllGenre, getAllPlatform, getAllGame } from '../../redux/actions'
 import getIconPlataforms from '../../functions/IcoRef/platformIcoRef'
-import getIconGenre from '../../functions/IcoRef/genreIcoRef';
+import getIconGenre from '../../functions/IcoRef/genreIcoRef'
+import getIconSource from '../../functions/IcoRef/sourceIcon'
 import FilterIcon from '../FilterIcon/FilterIcon'
 
 export default function NavBar() {
@@ -19,10 +20,16 @@ export default function NavBar() {
         dispatch(getAllGenre())
     },[])
 
+    const source = [
+        {id: 'api'},
+        {id: 'db'},
+    ]
+
    
     return (
         <div className={style.contenedor}>
             <a onClick={()=>dispatch(getAllGame(gamesBackUp))}>Home</a>
+            <FilterIcon title="Ouner" list={source} iconConverter={getIconSource} filter="Source"/>
             <FilterIcon title="Platforms" list={platforms} iconConverter={getIconPlataforms} filter="Platforms"/>
             <FilterIcon title="Genres" list={genres} iconConverter={getIconGenre} filter="Genres"/>
         </div>
