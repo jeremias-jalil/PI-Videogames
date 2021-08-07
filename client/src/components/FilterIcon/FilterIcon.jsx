@@ -4,13 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import style from './FilterIcon.module.css'
 
-import { resetFilters, filterByGenre, filterBySource, filterByPlatform } from '../../redux/actions'
+import { resetFilters, filterByGenre, filterBySource, filterByPlatform, setPage } from '../../redux/actions'
 
 export default function FilterIcon({ title, list, iconConverter, filter }) {
-    const platformFilter = useSelector(state => state.platform)
-    const genreFilter = useSelector(state => state.genre)
-    const sourceFilter = useSelector(state => state.source)
-    const loading = useSelector(state => state.loading)
+    const {loading} = useSelector(state => state)
 
     const dispatch = useDispatch()
 
@@ -37,6 +34,7 @@ export default function FilterIcon({ title, list, iconConverter, filter }) {
             dispatch(filterByGenre(id))
             setSelect(id)
         }
+        dispatch(setPage(1))
     }
 
 
@@ -54,12 +52,13 @@ export default function FilterIcon({ title, list, iconConverter, filter }) {
 
         }
         setSelect(0)
+        dispatch(setPage(1))
     }
 
 
     return (
         <div>
-            <div>
+            <div className={style.title}>
                 <h3>{title}</h3>
             </div>
             <div>

@@ -1,6 +1,7 @@
 .listIcon{
     display: flex;
     flex-direction: column;
+ 
 }
 
 .icon{
@@ -8,9 +9,19 @@
 }
 
 .icon:hover{
-    color:violet
+    cursor:pointer;
+    text-shadow: 1px 1px 2px black, 0 0 1em #00a8ff, 0 0 0.2em #00a8ff;
 }
 
 .iconSelected{
-    color:violet
+    color: #00a8ff;
+}
+.title{
+    border-style: solid;
+    border-color: white;
+    border-width: 0px 0px 3px 0px
+}
+
+.title h3{
+    margin-bottom: 5px;
 }

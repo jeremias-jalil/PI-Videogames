@@ -1,5 +1,5 @@
 import {
-    LOADING, ERROR, PAGE, PLATFORMS, GENRE,
+    LOADING, ERROR, PAGE, PLATFORMS, GENRE, RESET_GAME,
     GET_GAMES, GET_GAMES_BY_NAME, GET_GAMES_BY_ID,
     RESET_FILTER, FILTER_BY_GENRE, FILTER_BY_SOURCE, FILTER_BY_PLATFORM,
     ORDER_ALPHABETICALLY_ASC, ORDER_ALPHABETICALLY_DES, ORDER_BY_RATING_ASC, ORDER_BY_RATING_DES
@@ -7,7 +7,7 @@ import {
 
 const initialState = {
     games: [],
-    gamesBackUp:[],
+    gamesBackUp: [],
     game: {},
     currentPage: 1,
     loading: false,
@@ -69,8 +69,14 @@ export default function reducer(state = initialState, action) {
         case GET_GAMES_BY_ID:
             return {
                 ...state,
-                games: action.payload
+                game: action.payload
             }
+        case RESET_GAME:
+            return {
+                ...state,
+                game: {}
+            }
+
         //------------  FILTERS  ----------------
         case RESET_FILTER:
             return {

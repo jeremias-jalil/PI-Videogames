@@ -2,22 +2,38 @@
 .home{
     display: grid;
     grid-template-columns: 20% 80%;
-    grid-template-rows: 10vh 100%;
-    grid-auto-rows: minmax(100px, auto);
-    height: 100%;
+    grid-template-rows: 10vh auto;
+
+    background-blend-mode: multiply;
+    background-size: cover;
+
+    
   }
   
   .topBar{
       grid-column: 1/3;
-      grid-row:1/1
+      grid-row:1/2;
+      z-index: 3;
+      background-color: #151515b4;
   }
   
   .leftBar{
-      grid-column: 1/1;
-      grid-row: 2/3
+      background-color: #151515b4;
+      grid-column: 1/2;
+      grid-row: 2/3;
+      z-index: 2;
+      padding: 20px;
+      height: 100%;
+      
+  
   }
   
   .body{
+      background-color: #151515b4;
       grid-column: 2/3;
-      grid-row:2/3
+      grid-row:2/3;
+      padding: 20px;
+  
+      height: 100%;
+      color:white;  
   }

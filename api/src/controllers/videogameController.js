@@ -1,7 +1,7 @@
 require('dotenv').config();
 const axios = require('axios');
 const { API_KEY, API } = process.env;
-const { Videogame, Genre, Platform } = require('../db.js');
+const { Videogame, Genre, Platform, Short_screenshot } = require('../db.js');
 const { Op } = require("sequelize");
 
 
@@ -18,7 +18,13 @@ const include = [
         through: {
             attributes: []
         }
-    }]
+    }
+    ,
+    {
+        model: Short_screenshot,
+        
+    }
+]
 
 
 function extractDataApi(game) {
@@ -31,7 +37,9 @@ function extractDataApi(game) {
             rating: game.rating,
             platforms: game.parent_platforms?.map(p => { return { id: p.platform.id, name: p.platform.name } }),
             genres: game.genres?.map(g => { return { id: g.id, name: g.name } }),
-            image: game.background_image,
+            image: game.background_image || 'https://gamedustria.com/wp-content/uploads/2015/03/game.jpg',
+            description: game.description || 'Without description',
+            short_screenshots: game.short_screenshots || []
         }
     }
 
@@ -87,8 +95,20 @@ async function getGames() {
 
     if (API == 1) {
         try {
+            // gamesApiResults=await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
             gamesApiResults = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
-
+            gamesApiResults_21_40 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=2`)
+            gamesApiResults_41_60 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=3`)
+            gamesApiResults_61_80 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=4`)
+            gamesApiResults_81_100 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=5`)
+            allGamesApiResults = gamesApiResults.data.results.concat(
+                gamesApiResults_21_40.data.results,
+                gamesApiResults_41_60.data.results,
+                gamesApiResults_61_80.data.results,
+                gamesApiResults_81_100.data.results
+            )
+            gamesApiResults.data.results = allGamesApiResults
+            // console.log(allGamesApiResults)
         }
         catch (err) {
             console.log('api', err)
@@ -144,7 +164,7 @@ async function searchForName(search) {
     }
 
     try {
-        const gamesDb = await Videogame.findAll({
+        gamesDb = await Videogame.findAll({
             where: {
                 name: {
                     [Op.substring]: `${search}`
@@ -163,11 +183,13 @@ async function searchForName(search) {
 
 
 async function searchById(search) {
-
-    if (typeof search === 'number') {
+    console.log(search, 'search')
+    if (search * 1) {
         if (API == 1) {
             try {
-                const gamesApiResults = await axios.get(`https://api.rawg.io/api/games/${search}?key=${API_KEY}`)
+                let gamesApiResults = await axios.get(`https://api.rawg.io/api/games/${search}?key=${API_KEY}`)
+                const screenshotsApiResults = await axios.get(`https://api.rawg.io/api/games/${search}/screenshots?key=${API_KEY}`)
+                gamesApiResults.data.short_screenshots = screenshotsApiResults.data.results
                 return extractDataApi(gamesApiResults.data)
             }
 
@@ -213,9 +235,9 @@ async function searchById(search) {
 
 async function addDbGame(data) {
     try {
-        const { name, description, dateRelease, rating, platforms, genres, image } = data   //genre es un array de ID de generos
+        const { name, description, dateRelease, rating, platforms, genres, image, short_screenshots } = data   //genre es un array de ID de generos
 
-        const game = await Videogame.create({ name, description, dateRelease, rating, platforms, image });
+        const game = await Videogame.create({ name, description, dateRelease, rating, platforms, image, short_screenshots });
 
         const gameGenre = genres.map(async (id) => {
             const genre = await Genre.findByPk(id)     //busco la el registro genero por ID,
@@ -227,8 +249,13 @@ async function addDbGame(data) {
             game.addPlatform(platform)                             //le agrego ese registro por medio de la tabla intermedia.
         });
 
+        const screenshots = short_screenshots.map(async (url) => {
+             game.createShort_screenshot({image:url})                       
+        });
+
         await Promise.all(gameGenre)
         await Promise.all(gamePlatform)
+        await Promise.all(screenshots)
 
         return game
     }
@@ -237,11 +264,23 @@ async function addDbGame(data) {
     }
 }
 
+async function deleteGame(id) {
+    const gameDeleted = await Videogame.destroy({
+        where: {
+            id: id
+        },
+    })
+    return gameDeleted
+}
+
+
+
 module.exports = {
     searchForName,
     getGames,
     searchById,
-    addDbGame
+    addDbGame,
+    deleteGame
 }
 
 

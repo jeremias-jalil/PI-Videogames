@@ -1,0 +1,13 @@
+.div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+@media (max-width: 768px) {
+    .load{
+        width: 100px;
+    }
+
+}

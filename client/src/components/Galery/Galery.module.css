@@ -1,0 +1,14 @@
+.contenedor{
+    width: 100%;
+    margin-top: 75px;
+
+    padding: 10px;
+}
+
+.contenedor img{
+    width: 50%;
+}
+
+.contenedor img:hover{
+    width: 100%;
+}

@@ -1,24 +1,20 @@
 import React from 'react'
 import Search from '../Search/Search'
 import logo from '../../logo.png'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 
 import style from './SearchBar.module.css'
 
 
 
 export default function SearchBar() {
+    const history = useHistory()
     return (
         <div className={style.contenedor}>
-            <Link exact to='/home'>
-                <div>
-                    <img src={logo} style={{width:'50px'}}/>
-                </div>
-            </Link>
-            <Link exact to='/newgame'>
-                <div>U-VGame</div>
-            </Link>
-            <div>
+            <div className={style.logo}>
+                <img src={logo} style={{ width: '70px' }} onClick={() => history.push('/')} />
+            </div>
+            <div className={style.search}>
                 <Search />
             </div>
         </div>

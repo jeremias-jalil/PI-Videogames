@@ -1,0 +1,26 @@
+.contenedor input{
+    width: 60vw;
+    border-radius: 20px;;
+    padding: 12px 20px 12px 30px;
+    margin-right: 10px;
+    border-style: none;
+        
+}
+
+.contenedor input:focus{
+  box-shadow: 1px 1px 2px black, 0 0 1em #00a8ff, 0 0 0.2em #00a8ff;
+  outline: none;
+}
+
+
+.contenedor{
+  
+  width: 500px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.contenedor form{
+  display: flex;
+  align-items: center;
+}

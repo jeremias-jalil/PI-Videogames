@@ -6,22 +6,20 @@ import { Route } from 'react-router-dom';
 
 import Home from './pages/Home/Home'
 import NewGame from './pages/NewGame/NewGame';
+import Game from './pages/Game/Game';
+import Landing from './pages/Landing/Landing';
 
 function App() {
   return (
     <>
-      <Route path='/home' >
-        <div className={style.div}>
-          <Home />
-        </div>
-      </Route>
+      <Route exact path='/'  component={Landing} />
+      
+      <Route path='/home'  component={Home} />
 
-      <Route path='/newgame' >
-        <div className={style.div}>
-          <NewGame />
-        </div>
-      </Route>
+      <Route path='/newgame' component={NewGame}/>
 
+      <Route path='/game/:id' component={Game}/>
+        
     </>
   );
 }

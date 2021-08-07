@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import style from './Cards.module.css'
 
@@ -9,6 +9,7 @@ import { orderAlphFunc, orderRatingFunc } from '../../functions/orders';
 import Card from '../Card/Card'
 import Pagination from '../Pagination/Pagination'
 import Order from '../Order/Order';
+import NoGameFound from '../NoGameFound/NoGameFound';
 
 export default function Cards({ games }) {
 
@@ -17,10 +18,10 @@ export default function Cards({ games }) {
 
 
     const [postPerPage, setPostPerPage] = useState(9)
-   
+
     const indexLastPost = currentPage * postPerPage
     const indexFirstPost = indexLastPost - postPerPage
-   
+
     const [currentGame, setCurrentGame] = useState(games.slice(indexFirstPost, indexLastPost))
     const [totalGame, setTotalGame] = useState(games.length)
 
@@ -44,11 +45,13 @@ export default function Cards({ games }) {
             setTotalGame(games.length)
         }
 
-    }, [platformFilter, genreFilter, sourceFilter, currentPage, loading, orderAlph, orderRating, games.length])
+    }, [platformFilter, genreFilter, sourceFilter, currentPage, loading, orderAlph, orderRating, games.length,postPerPage])
 
     function handlePostPerPage(number) {
         setPostPerPage(number)
     }
+
+    
 
     return (
         <div className={style.contenedor}>
@@ -56,7 +59,7 @@ export default function Cards({ games }) {
                 <Order handlePostPerPage={handlePostPerPage} />
             </div>
             <div className={style.cards}>
-                {currentGame.length > 0 ? currentGame?.map(e => <Card game={e} key={e.id} />) : <h3>No game found</h3>}
+                {currentGame.length > 0 ? currentGame?.map(e => <Card game={e} key={e.id} />) : <NoGameFound/>}
             </div>
 
             <div className={style.pagination}>

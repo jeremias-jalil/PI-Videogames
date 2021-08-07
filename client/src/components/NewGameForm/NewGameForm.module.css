@@ -1,0 +1,64 @@
+.contenedor{
+    margin: 30px;
+    background-color:chocolate;
+    
+}
+
+.form{
+    display: flex;
+}
+
+.formItem{
+    margin: 10px;
+}
+
+.input{
+    margin: 0px;
+}
+
+.inputNull{
+    margin: 0px;
+}
+
+.icon{
+    color: black;
+}
+
+.icon:hover{
+    color:red;
+}
+
+.selector{
+    display: flex;
+    margin: 20px;
+    justify-content: space-evenly;
+}
+.submit {
+
+    width: 100%;
+  }
+
+  .submitDis {
+  display: none;
+  }
+
+.form input, textarea{
+    display: block;
+    width: 100%;
+    padding: .5rem .8rem .5rem .8rem;
+    margin: .9vw 0 ;
+    border:0;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.form textarea{
+    height: 15vh;
+}
+
+.form h5{
+    font-size: 25px ;
+    text-align: left;
+    color: black;
+    margin: 0 0 .5vh 0;
+}

@@ -6,21 +6,25 @@ import style from './Pagination.module.css'
 import { setPage } from '../../redux/actions';
 
 export default function Pagination({ totalGame, postPerPage }) {
-    
-    const currentPage = useSelector(state => state.page)
-    const loading = useSelector(state => state.loading)
+
+    const { currentPage, loading } = useSelector(state => state)
+
+
     const dispatch = useDispatch()
+
     const [pageNumbers, setPageNumbers] = useState([])
+
     const totalPageNumbers = []
+
     const numberOfPages = Math.ceil(totalGame / postPerPage)
     for (let i = 1; i <= numberOfPages; i++) {
         totalPageNumbers.push(i)
     }
-         
+
     useEffect(() => {
-        
+
         setPageNumbers([...totalPageNumbers.slice(0, 10)])
-    }, [loading,totalPageNumbers.length])
+    }, [loading, totalPageNumbers.length])
 
     function slicePageNumber(number) {
         if (number <= 5) {
@@ -44,22 +48,24 @@ export default function Pagination({ totalGame, postPerPage }) {
         slicePageNumber(1)
     }
 
+
+
     return (
         <div className={style.contenedor}>
-            
-                <ul className={style.list}>
-                    <li className={currentPage > 5 ? style.number : style.none} onClick={() => firstPage()}>
-                        <h5>...</h5>
-                    </li>
-                    {pageNumbers.map(number =>
-                        <li key={number} className={number === currentPage ? style.numberPage : style.number}>
-                            <a onClick={() => (dispatch(setPage(number)), slicePageNumber(number))}>{number}</a>
-                        </li>)}
-                    <li className={currentPage < numberOfPages - 5 ? style.number : style.none} onClick={() => lastPage()}>
-                        <h5>...</h5>
-                    </li>
-                </ul>
-            
+
+            <ul className={style.list}>
+                <li className={currentPage > 5 ? style.number : style.none} onClick={() => firstPage()}>
+                    <h5>...</h5>
+                </li>
+                {pageNumbers.map(number =>
+                    <li key={number} className={number === currentPage ? style.numberPage : style.number}>
+                        <h5 onClick={() => (dispatch(setPage(number)), slicePageNumber(number))}>{number}</h5>
+                    </li>)}
+                <li className={currentPage < numberOfPages - 5 ? style.number : style.none} onClick={() => lastPage()}>
+                    <h5>...</h5>
+                </li>
+            </ul>
+
         </div>
     )
 }

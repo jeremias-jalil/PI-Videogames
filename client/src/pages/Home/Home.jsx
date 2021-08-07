@@ -6,11 +6,12 @@ import PageBase from '../PageBase/PageBase';
 import SearchBar from '../../components/SearchBar/SearchBar'
 import NavBar from '../../components/NavBar/NavBar'
 import Cards from '../../components/Cards/Cards'
+import Loading from '../../components/Loading/Loading';
 
 import { getAllGame } from '../../redux/actions'
 
 export default function Home() {
-    const { gamesBackUp, games } = useSelector(state => state)
+    const { gamesBackUp, games, loading } = useSelector(state => state)
 
     const dispatch = useDispatch()
 
@@ -18,9 +19,8 @@ export default function Home() {
         dispatch(getAllGame(gamesBackUp))
     }, [])
 
-
     return (
-        <PageBase title='All your games' topBar={<SearchBar />} leftBar={<NavBar />} body={<Cards games={games} />} />
+        <PageBase title='All your games' topBar={<SearchBar />} leftBar={<NavBar />} body={loading?<Loading/>:<Cards games={games} />} />
 
     )
 }

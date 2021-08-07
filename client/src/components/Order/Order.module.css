@@ -9,11 +9,12 @@
 }
 
 .ico{
-    composes: primaryColor from "../../variables.css";
+    color: white;
     margin: 5px;
     font-size: 20px;
 }
 
 .ico:hover{
-    color:violet
+    color: #00a8ff;
+    cursor:pointer;
 }

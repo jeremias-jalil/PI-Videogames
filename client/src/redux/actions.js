@@ -2,7 +2,7 @@
 
 import {
     LOADING, ERROR, PAGE, PLATFORMS, GENRE,
-    GET_GAMES, GET_GAMES_BY_NAME, GET_GAMES_BY_ID,
+    GET_GAMES, GET_GAMES_BY_NAME, GET_GAMES_BY_ID, RESET_GAME,
     RESET_FILTER, FILTER_BY_GENRE, FILTER_BY_SOURCE, FILTER_BY_PLATFORM,
     ORDER_ALPHABETICALLY_ASC, ORDER_ALPHABETICALLY_DES, ORDER_BY_RATING_ASC, ORDER_BY_RATING_DES
 } from './constants'
@@ -52,7 +52,7 @@ export function getAllPlatform() {
 }
 
 
-//------------  GET  --------> GET_GAMES, GET_GAMES_BY_NAME, GET_GAMES_BY_ID
+//------------  GET  --------> GET_GAMES, GET_GAMES_BY_NAME, GET_GAMES_BY_ID, RESET_GAME
 
 
 
@@ -111,7 +111,6 @@ export function getGameById(id) {
         dispatch({ type: LOADING })
         getGameByIdApi(id)
             .then(res => {
-
                 dispatch({
                     type: GET_GAMES_BY_ID,
                     payload: res
@@ -122,6 +121,14 @@ export function getGameById(id) {
             .catch(err => dispatch({ type: ERROR, payload: err }))
     })
 
+}
+
+export function resetGame() {
+    return (
+        dispatch => {
+            dispatch({ type: RESET_GAME })
+        }
+    )
 }
 
 

@@ -1,5 +1,14 @@
 .contenedor{
-    height: 100%;
-    background-color: black;
-    color: white
+    
+    color: white;
+    /* box-shadow: 0px 0px 10px 0px #00a8ff; */
+    z-index: 5;
+
     }   
+    
+    
+.contenedor h2:hover{
+    cursor:pointer;
+    text-shadow: 1px 1px 2px black, 0 0 1em #00a8ff, 0 0 0.2em #00a8ff;
+}
+

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useHistory } from 'react-router-dom';
 
 import style from './Card.module.css'
 
@@ -10,10 +11,11 @@ import starRating from '../../functions/IcoRef/starRating';
 
 export default function Card({ game }) {
     const loading = useSelector(state => state.loading)
-    const [focus, setFocus] = useState(true)
+    const [focus, setFocus] = useState(false)
     const [platformIco, setPlatformIco] = useState([])
     const [genreIco, setGenreIco] = useState([])
     const [starsIco, setStarIco] = useState([])
+    const history = useHistory()
 
     useEffect(() => {
         setPlatformIco(getIconPlataforms(game.platforms))
@@ -21,32 +23,39 @@ export default function Card({ game }) {
         setStarIco(starRating(game.rating))
     }, [loading])
 
-    function handleFocus() {
-        setFocus(!focus)
-    }
-
     return (
-        <div className={style.contenedor} onMouseEnter={() => handleFocus()} onMouseLeave={() => handleFocus()}>
+        <div className={style.contenedor} onMouseEnter={() => setFocus(true)} onMouseLeave={() => setFocus(false)} onClick={(e) => (e.preventDefault(), history.push(`/game/${game.id}`))}>
             <div on>
-                <img src={game.image} className={style.imageCard} />
+                <img src={game.image} className={focus ? style.imageCardFocus : style.imageCard} />
+
             </div>
-            <div className={focus ? style.none : style.description}>
-                <h1>{game.name}</h1>
+            <div className={focus ? style.description : style.none}>
+                <h2>{game.name}</h2>
                 <div className={style.icons}>
-                    <div>
-                        {platformIco.map(p =>
-                            <FontAwesomeIcon icon={p?.icon} />)}
-                    </div>
-                    <div>
-                        {genreIco.map(p =>
-                            <FontAwesomeIcon icon={p?.icon} />)}
-                    </div>
-                    <div>
+                    <div className={style.iconsText}>
+                    <h5>Rating:  </h5>
                         {starsIco?.map(p =>
-                            <FontAwesomeIcon icon={p} />)}
+                            <FontAwesomeIcon icon={p} className={style.ico} />)}
+
+                    </div>
+                    <div className={style.iconsText}>
+                        <h5>Platforms:  </h5>
+                        {platformIco?.map(p => (
+                            <div className={style.ico}>
+                                <FontAwesomeIcon icon={p?.icon} key={p?.id} />
+                                <a>{p?.name}</a>
+                            </div>)
+                        )}
+                    </div>
+                    <div className={style.iconsText}>
+                        <h5>Genres:  </h5>
+                        {genreIco?.map(p => (
+                            <div className={style.ico}>
+                                <FontAwesomeIcon icon={p?.icon} key={p?.id} />
+                                <a>{p?.name}</a>
+                            </div>))}
                     </div>
                 </div>
-                <h5 className={focus ? style.none : style.description}>{game.description}</h5>
             </div>
         </div >
     )

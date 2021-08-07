@@ -7,7 +7,7 @@ export default function getIconSource(id) {
         if (id[0]?.id) {
             iconPlatform = id.map(e => getIcon(e.id))
         }
-        console.log(iconPlatform) 
+        
         return iconPlatform
     }
     else {
@@ -16,7 +16,7 @@ export default function getIconSource(id) {
 }
 
 function getIcon(id){
-    console.log(id)
+    
     
     if (id && typeof id === 'number') {
         return apiIcon
@@ -29,13 +29,13 @@ function getIcon(id){
 
 const apiIcon = {
         id: 1,
-        name: "De Amigos",
+        name: "Friends",
         icon: faUserFriends
     }
 
 
 const db =  {
         id: 2,
-        name: "Propios",
+        name: "Own",
         icon: faUser
     }

@@ -1,26 +1,82 @@
 .contenedor{
-    background-color: yellow;
+
     color: white;
     margin: 10px;
     width: 30%;
+    height: 200px;
     border-radius: 10px;
+    z-index: 0;
+    position: relative;
+    
     
 }
 
+.contenedor h2{
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    width: 100%; 
+}
+
+.contenedor h5{
+    margin-block-start: 0.0em;
+    margin-block-end: 0.0em;
+    margin-inline-end: 1em;
+}
+
+.ico{
+    margin: 2px;
+    cursor:help
+}
+
+.ico a{
+    display: none;
+}
+
+.ico:hover a{
+    display: inline;
+    padding-left: 5px;
+    
+}
+
+
+
 .imageCard{
-    height: 100%;
     width: 100%;
+    height: 200px;
+    border-radius: 10px 10px 10px 10px;
+    object-fit: cover;
+    z-index: 1;
+    
+}
+
+.imageCardFocus{
+    opacity: 0.3;
+    width: 100%;
+    height: 200px;
     border-radius: 10px 10px 0px 0px;
+    object-fit: cover;
+    z-index: 1;
 }
 
 .none{
     display: none;
+    
+
 }
 
-.description{
-    color:black;
+.description {
+    
+    padding: 0px 10px 0px 10px;
+    color:white;
+    height: 180px;
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    margin-top: -180px;
+    animation-name: example;
+    animation-duration: 0.5s;
+    z-index: 2;
+    position: relative;
 }
 
 .icons{
@@ -28,3 +84,14 @@
     flex-direction: column
 }
 
+.iconsText{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    }
+
+@keyframes example {
+    0%   {margin-top: 0;color:transparent;}
+    50% {color:transparent;}
+    100% {margin-top: -180px;color:white;}
+  }

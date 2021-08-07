@@ -1,0 +1,49 @@
+
+.contenedor{
+    height: 100vh;
+    background-size: cover ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.contenedor div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.button
+{
+  display: block;
+  margin: 0px;
+  width: 240px;
+  height: 50px;
+  border: 0px;
+  border-color: #00a8ff;
+  background-color: black;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+  transition: .3s linear;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.button:hover {
+    transform: rotateY(-15deg);
+    box-shadow: 0 15px 15px #00a8ff;
+  }
+
+.link{
+    text-decoration: none;
+    height: 100%;
+    margin: 0px;
+    
+}
