@@ -7,20 +7,29 @@ export default function SelectAdd({ name, setGameInfo, gameInfo, list, iconConve
 
     const [listItem, setListItem] = useState(list)
     const [ico, setIco] = useState([])
+    const [optionSelect, setOptionSelect] = useState(1)
 
     let listAdd = gameInfo[name]
 
     useEffect(() => {
         setListItem(list)
         setIco(iconConverter(listAdd))
-    }, [])
+        setOptionSelect(list[0]?.id)
+    }, [list])
+
+    useEffect(() => {
+        if (listItem[0]) {
+            setOptionSelect(listItem[0].id)
+        }
+    }, [listItem])
 
     function add(e) {
         e.preventDefault()
-        listAdd.push(parseInt(e.target[0].value))
+        listAdd.push(parseInt(optionSelect))
         setGameInfo({ ...gameInfo, [name]: listAdd })
-        setListItem(listItem.filter((prop) => prop.id !== parseInt(e.target[0].value)))
+        setListItem(listItem.filter((prop) => prop.id !== parseInt(optionSelect)))
         setIco(iconConverter(listAdd))
+
     }
 
     function deleteItem(dataName, pos) {
@@ -33,14 +42,16 @@ export default function SelectAdd({ name, setGameInfo, gameInfo, list, iconConve
     }
 
     return (
-        <div>
-            <form onSubmit={(e) => add(e)}>
-                <select name={name}>
+        <div className={style.contenedor}>
+            <div className={style.input}>
+                <select name={name} onChange={(e) => setOptionSelect(e.target.value)}>
                     {listItem.map(e => (
                         <option key={e.id} value={e.id}>{e.name}</option>
                     ))}
                 </select>
-                <button type='submit'>Add</button>
+                <button type='button' onClick={(e) => add(e)}>Add</button>
+            </div>
+            <div className={style.icon}>
                 {ico?.map((p, pos) => (
                     <div className={style.icon} onClick={() => deleteItem({ name }, pos)}>
                         <FontAwesomeIcon icon={p.icon} key={p.id} />
@@ -48,7 +59,7 @@ export default function SelectAdd({ name, setGameInfo, gameInfo, list, iconConve
                     </div>
                 ))
                 }
-            </form>
+            </div>
         </div>
     )
 }

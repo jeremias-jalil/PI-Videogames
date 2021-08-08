@@ -4,15 +4,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import style from './FilterIcon.module.css'
 
-import { resetFilters, filterByGenre, filterBySource, filterByPlatform, setPage } from '../../redux/actions'
+import { filterByGenre, filterBySource, filterByPlatform, setPage } from '../../redux/actions'
 
 export default function FilterIcon({ title, list, iconConverter, filter }) {
-    const {loading} = useSelector(state => state)
+    const { loading, genreFilter, sourceFilter, platformFilter } = useSelector(state => state)
 
     const dispatch = useDispatch()
 
     const [ico, setIco] = useState([])
     const [select, setSelect] = useState(0)
+
+    useEffect(() => {
+        if (!genreFilter && !sourceFilter && !platformFilter) {
+            setSelect(0)
+        }
+    }, [genreFilter,sourceFilter,platformFilter])
 
 
     useEffect(() => {

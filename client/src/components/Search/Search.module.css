@@ -15,12 +15,12 @@
 
 .contenedor{
   
-  width: 500px;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
 }
 
 .contenedor form{
-  display: flex;
+  display: inline;
   align-items: center;
 }

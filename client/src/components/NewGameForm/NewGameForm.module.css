@@ -1,15 +1,18 @@
 .contenedor{
-    margin: 30px;
-    background-color:chocolate;
+    margin: 0px;
     
 }
 
 .form{
-    display: flex;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 33% 33% 34%;
+    max-height: 500px;
+    
 }
 
 .formItem{
-    margin: 10px;
+    padding-right: 20px;
 }
 
 .input{
@@ -21,7 +24,7 @@
 }
 
 .icon{
-    color: black;
+    color: white;
 }
 
 .icon:hover{
@@ -29,22 +32,30 @@
 }
 
 .selector{
-    display: flex;
-    margin: 20px;
-    justify-content: space-evenly;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 33% 33% 34%;
+  
 }
 .submit {
-
     width: 100%;
   }
 
   .submitDis {
-  display: none;
+    color:#363631;
+    background-color: #151510;
+    box-shadow: 0px 0px 0px black !important;
+    width: 100%;
   }
 
+.submitDis:hover{
+    box-shadow: 0px 0px 0px black, 0 0 0em #00a8ff, 0 0 0em #00a8ff !important
+
+}
+
 .form input, textarea{
-    display: block;
-    width: 100%;
+    display: inline;
+    width: 90%;
     padding: .5rem .8rem .5rem .8rem;
     margin: .9vw 0 ;
     border:0;
@@ -56,9 +67,24 @@
     height: 15vh;
 }
 
-.form h5{
+.contenedor h5{
     font-size: 25px ;
     text-align: left;
-    color: black;
+    color: white;
     margin: 0 0 .5vh 0;
+}
+
+.rating{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 20px;
+    margin-top: 100px;
+
+}
+.rating input{
+    width: 30% !important;
+    margin-left: 10px;
+    margin-right: 10px;
+
 }

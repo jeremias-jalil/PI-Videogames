@@ -1,7 +1,32 @@
+.contenedor{
+    background-color: transparent;
+    
+}
+
 .icon{
-    color: black;
+    color: white;
 }
 
 .icon:hover{
     color:red;
 }
+
+.contenedor select{
+    display: block;
+    width: 60%;
+    padding: .5rem .8rem .5rem .8rem;
+    margin: .9vw 0 ;
+    border:0;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.contenedor button{
+    margin: 10px;
+
+}
+
+.input{
+    display: flex;
+}
+

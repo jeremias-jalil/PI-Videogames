@@ -1,0 +1,37 @@
+.form{
+    display: block;
+    width: 100%;
+}
+
+.form input, textarea{
+    display: block;
+    width: 100%;
+    padding: .5rem .8rem .5rem .8rem;
+    margin: .9vw 0 ;
+    border:0;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.form textarea{
+    height: 15vh;
+}
+
+.input{
+    display: flex;
+}
+
+.form button{
+    margin: 10px;
+
+}
+
+.images{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto
+}
+
+.images img{
+    width: 100%
+}

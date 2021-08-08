@@ -138,9 +138,7 @@ export function resetFilters() {
 
     return (
         dispatch => {
-            dispatch({ type: LOADING })
             dispatch({ type: RESET_FILTER })
-            dispatch({ type: LOADING })
         }
     )
 }

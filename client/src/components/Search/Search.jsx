@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom';
 
 import { getGameByName } from '../../redux/actions';
 
+import { resetFilters, setPage } from '../../redux/actions';
+
 export default function Search() {
 
     const dispatch = useDispatch()
@@ -15,6 +17,8 @@ export default function Search() {
         e.preventDefault()
         dispatch(getGameByName(searchWord))
         setSearchWord('')
+        dispatch(resetFilters())
+        dispatch(setPage(1))
         history.push('/home')
     }
 
@@ -25,6 +29,7 @@ export default function Search() {
                 <input value={searchWord} onChange={(e)=>setSearchWord(e.target.value)} placeholder='Search a game'/>
                 <button type='submit'>Search</button>
             </form>
+          
         </div>
     )
 }
