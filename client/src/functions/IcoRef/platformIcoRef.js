@@ -1,4 +1,4 @@
-import { faDesktop, faGamepad, faGlobe } from "@fortawesome/free-solid-svg-icons";
+import { faDesktop, faGamepad, faGlobe, faAd } from "@fortawesome/free-solid-svg-icons";
 import { faPlaystation, faXbox, faApple, faAndroid, faLinux } from "@fortawesome/free-brands-svg-icons";
 
 export default function getIconPlataforms(platforms) {
@@ -6,7 +6,7 @@ export default function getIconPlataforms(platforms) {
     if (platforms) {
         let iconPlatform
         if (platforms[0]?.id) {
-            iconPlatform = platforms.map(e => getIconPlatformById(e.id))
+            iconPlatform = platforms.map(e => getIconPlatformById(e.id, e.name))
         } else {
             iconPlatform = platforms.map(e => getIconPlatformById(e))
         }
@@ -17,12 +17,21 @@ export default function getIconPlataforms(platforms) {
     }
 }
 
-function getIconPlatformById(id) {
+function getIconPlatformById(id, name) {
 
-    const platform = iconReference.filter(e => parseInt(e.id) === parseInt(id))
-
+    const platform = iconReference.filter(e => parseInt(e.id) === parseInt(id) || e.name === name)
+    if (platform.length === 0) return iconNull
     return platform[0]
 }
+
+const iconNull = [
+    {
+        id: 0,
+        name: "",
+        icon: faAd
+    },
+]
+
 
 const iconReference = [
     {
@@ -47,22 +56,22 @@ const iconReference = [
         icon: faApple
     },
     {
-        id: 5,
+        id: 8,
         name: "Android",
         icon: faAndroid
     },
     {
-        id: 6,
+        id: 5,
         name: "Apple Macintosh",
         icon: faApple
     },
     {
-        id: 7,
+        id: 6,
         name: "Linux",
         icon: faLinux
     },
     {
-        id: 8,
+        id: 7,
         name: "Nintendo",
         icon: faGamepad
     },

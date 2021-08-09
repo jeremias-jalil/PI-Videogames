@@ -44,24 +44,20 @@ export default function Cards({ allGames }) {
         }
 
         else if (orderAlph || orderRating) {
-            console.log('entre2')
             setGames([...orderAlphFunc(games, orderAlph)])
             setGames([...orderRatingFunc(games, orderRating)])
-            // setCurrentGame(games.slice(indexFirstPost, indexLastPost))
-            // setTotalGame(games.length)
+
         }
 
         else {
-            console.log('entre')
             setGames([...allGames])
-            // setCurrentGame(games.slice(indexFirstPost, indexLastPost))
-            // setTotalGame(games.length)
+
         }// eslint-disable-next-line
     }, [platformFilter, genreFilter, sourceFilter, currentPage, loading, orderAlph, orderRating, games.length, postPerPage,allGames])
 
     useEffect(() => {
         setCurrentGame(games.slice(indexFirstPost, indexLastPost))
-        setTotalGame(games.length)
+        setTotalGame(games.length)// eslint-disable-next-line
     }, [games,loading])
 
 

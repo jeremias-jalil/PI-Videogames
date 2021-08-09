@@ -44,8 +44,8 @@ export default function Card({ game }) {
                     <div className={style.iconsText}>
                         <h5>Platforms:  </h5>
                         {platformIco?.map(p => (
-                            <div className={style.ico} key={p?.id}>
-                                <FontAwesomeIcon icon={p?.icon} key={p?.id} />
+                            <div className={style.ico} key={p?.id}> 
+                                <FontAwesomeIcon icon={p?.icon || ''} key={p?.id} />
                                 <em>{p?.name}</em>
                             </div>)
                         )}

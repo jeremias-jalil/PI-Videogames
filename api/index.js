@@ -33,12 +33,12 @@ conn.sync({ force: true }).then(async () => {
     try {
       const apiGenresResponse = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
       const apiGenres = apiGenresResponse.data.results
-      const genres = apiGenres.map(e => { return { name: e.name } })
+      const genres = apiGenres.map(e => { return { id:e.id,name: e.name } })
       Genre.bulkCreate(genres)
 
       const apiPlatformsResponse = await axios.get(`https://api.rawg.io/api/platforms/lists/parents?key=${API_KEY}`)
       const apiPlatforms = apiPlatformsResponse.data.results
-      const platforms = apiPlatforms.map(e => { return { name: e.name } })
+      const platforms = apiPlatforms.map(e => { return { id:e.id, name: e.name } })
       Platform.bulkCreate(platforms)
     }
     catch (err) {
