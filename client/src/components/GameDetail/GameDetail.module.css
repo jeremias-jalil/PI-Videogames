@@ -25,11 +25,11 @@
 
 }
 
-.ico a{
+.ico em{
     display: none;
 }
 
-.ico:hover a{
+.ico:hover em{
     display: inline;
     padding-left: 5px;
     
@@ -38,6 +38,7 @@
 .description{
     background-color: rgba(0, 0, 0, 0.295);
     padding: 20px;
+    text-align: justify
 }
 .data{
     background-color: rgba(0, 0, 0, 0.295);

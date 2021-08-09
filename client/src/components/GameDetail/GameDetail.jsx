@@ -71,7 +71,7 @@ export default function GameDetail({ id }) {
                         {icoGenre?.map(p => (
                             <div className={style.ico}>
                                 <FontAwesomeIcon icon={p?.icon} key={p?.id} />
-                                <a> {p?.name}</a>
+                                <em>{p?.name}</em>
                             </div>)
                         )
                         }
@@ -81,7 +81,7 @@ export default function GameDetail({ id }) {
                         {icoPlatform?.map(p => (
                             <div className={style.ico}>
                                 <FontAwesomeIcon icon={p?.icon} key={p?.id} />
-                                <a> {p?.name}</a>
+                                <em> {p?.name}</em>
                             </div>)
                         )
                         }

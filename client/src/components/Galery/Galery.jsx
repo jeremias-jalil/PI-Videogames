@@ -9,7 +9,7 @@ export default function Galery({ images }) {
     return (
         <div className={style.contenedor}>
             {images?.map(image =>
-                <img src={image.image} />)}
+                <img src={image.image} alt={image.image}/>)}
         </div>
     )
 }

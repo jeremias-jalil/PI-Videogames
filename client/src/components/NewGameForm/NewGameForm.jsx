@@ -91,7 +91,7 @@ export default function NewGameForm() {
                     <div className={style.formItem}>
                         <h5>Image*</h5>
                         <input type="url" name='image' className={gameInfo.name ? style.input : style.inputNull} onChange={(e) => setData(e)} value={gameInfo.image} required />
-                        <img src={gameInfo.image} style={{ width: '80%' }} />
+                        <img src={gameInfo.image} style={{ height: '200px' }} alt='link game' className={gameInfo.image===""?style.none:""}/>
                     </div>
                     <div className={style.rating}>
                         <h5>Rating*</h5>

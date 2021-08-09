@@ -10,7 +10,7 @@ function filterGenre(genres, genre) {
     if (genre) {
         let include = false
         genres?.forEach((g) => {
-            if (g.id == genre) {
+            if (parseInt(g.id) === parseInt(genre)) {
              include = true
             }
         })
@@ -25,7 +25,7 @@ function filterPlatform(platforms, platform) {
     if (platform) {
         let include = false
         platforms?.forEach((p) => {
-            if(p.id == platform){
+            if(parseInt(p.id) === parseInt(platform)){
                 include=true 
             }
         })

@@ -167,8 +167,10 @@ async function searchForName(search) {
         gamesDb = await Videogame.findAll({
             where: {
                 name: {
-                    [Op.substring]: `${search}`
-                }
+                    [Op.or]:[
+                        {[Op.substring]: `${search}`},
+                        {[Op.substring]: `${search.charAt(0).toUpperCase() + search.slice(1)}`}
+                    ]}
             },
             include: include
         });

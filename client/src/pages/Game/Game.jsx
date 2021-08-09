@@ -17,14 +17,13 @@ export default function Game(props) {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getGameById(id))
+        dispatch(getGameById(id))// eslint-disable-next-line
     }, [])
 
     useEffect(() => {
         return()=>{
             dispatch(resetGame())
-        }
-        
+        }// eslint-disable-next-line
     }, [])
 
     return (

@@ -29,17 +29,15 @@
     cursor:help
 }
 
-.ico a{
+.ico em{
     display: none;
 }
 
-.ico:hover a{
+.ico:hover em{
     display: inline;
     padding-left: 5px;
     
 }
-
-
 
 .imageCard{
     width: 100%;

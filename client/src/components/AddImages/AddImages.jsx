@@ -8,15 +8,19 @@ export default function AddImages({setGameInfo, gameInfo}) {
 
 
     function addImage() {
-        var RegExp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+        var RegExp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/;
         if (RegExp.test(item)) {
             setListItem([...listItem, item])
             setItem('')
-            setGameInfo({ ...gameInfo, short_screenshots: listItem })
+            
         } else {
             alert('Enter valid URL')
         }
     }
+
+    useEffect(() => {
+        setGameInfo({ ...gameInfo, short_screenshots: listItem })// eslint-disable-next-line
+    }, [listItem])
 
     return (
         <div className={style.form}>
@@ -26,7 +30,7 @@ export default function AddImages({setGameInfo, gameInfo}) {
             </div>
             <div className={style.images}>
                 {listItem.map(e => (
-                    <img src={e} />
+                    <img src={e} alt={e}/>
                 ))}
             </div>
         </div>

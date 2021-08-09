@@ -8,7 +8,7 @@ export default function NoGameFound() {
     return (
         <div className={style.contenedor}>
             <div>
-                <img src={noMatch} />
+                <img src={noMatch} alt='No game found'/>
             </div>
         </div>
     )

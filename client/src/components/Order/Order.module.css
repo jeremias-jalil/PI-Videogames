@@ -18,3 +18,14 @@
     color: #00a8ff;
     cursor:pointer;
 }
+
+.icoActive{
+    margin: 5px;
+    font-size: 20px;
+    color:#00aaff71;
+}
+
+.icoActive:hover{
+    color: #00a8ff;
+    cursor:pointer;
+}

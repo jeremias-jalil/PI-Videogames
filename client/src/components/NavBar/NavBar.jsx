@@ -19,8 +19,13 @@ export default function NavBar() {
 
 
     useEffect(() => {
-        dispatch(getAllPlatform())
-        dispatch(getAllGenre())
+        if (platforms.length === 0) {
+            dispatch(getAllPlatform())
+        }
+        if (genres.length === 0) {
+            dispatch(getAllGenre())
+        } 
+        // eslint-disable-next-line
     }, [])
 
     const source = [

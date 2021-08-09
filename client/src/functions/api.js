@@ -1,4 +1,4 @@
-import env from "react-dotenv";
+
 import axios from 'axios'
 
 const BACK_SERVER =  'http://localhost:3001';

@@ -12,8 +12,11 @@ export default function Landing() {
     return (
         <div style={{ backgroundImage: `url(${imgBack})` }} className={style.contenedor}>
             <div >
-                <img src={logo} />
-                <button onClick={(e)=>(e.preventDefault(),history.push('/home') )}   className='buttonLanding'>Start</button>
+                <img src={logo} alt='logo' />
+                <button onClick={(e) => {
+                    e.preventDefault()
+                    history.push('/home')
+                }} className='buttonLanding'>Start</button>
             </div>
         </div>
     )

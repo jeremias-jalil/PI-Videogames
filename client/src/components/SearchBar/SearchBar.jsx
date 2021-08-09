@@ -12,7 +12,7 @@ export default function SearchBar() {
     return (
         <div className={style.contenedor}>
             <div className={style.logo}>
-                <img src={logo} style={{ width: '70px' }} onClick={() => history.push('/')} />
+                <img src={logo} style={{ width: '70px' }} onClick={() => history.push('/') } alt='logo'/>
             </div>
             <div className={style.search}>
                 <Search />

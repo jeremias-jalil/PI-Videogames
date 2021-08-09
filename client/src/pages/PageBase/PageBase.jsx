@@ -2,8 +2,6 @@ import React from 'react'
 import style from './PageBase.module.css'
 import { useSelector } from 'react-redux';
 
-import { getGameById } from '../../redux/actions';
-
 export default function PageBase({ title, topBar, leftBar, body }) {
 
     const { game } = useSelector(state => state)

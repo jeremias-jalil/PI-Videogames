@@ -2,8 +2,7 @@ export function orderAlphFunc(games, order) {
     let gameInOrder
     
     if (order === "ACS") {
-        gameInOrder = [...
-            games.sort((a, b) => {
+        const arrayOrdered = games.sort((a, b) => {
                 
                 if (a.name < b.name) {
                     return 1;
@@ -12,21 +11,23 @@ export function orderAlphFunc(games, order) {
                     return -1;
                 }
                 return 0
-            })]
+            })
+        
+        gameInOrder = [...arrayOrdered]
         return gameInOrder
     }
     if (order === "DES") {
-        gameInOrder = [...
-            games.sort((a, b) => {
+        const arrayOrdered = games.sort((a, b) => {
                 
-                if (a.name > b.name) {
-                    return 1;
-                }
-                if (a.name < b.name) {
-                    return -1;
-                }
-                return 0
-            })]
+            if (a.name > b.name) {
+                return 1;
+            }
+            if (a.name < b.name) {
+                return -1;
+            }
+            return 0
+        })
+        gameInOrder = [...arrayOrdered]
         return gameInOrder
     }
 
@@ -37,7 +38,7 @@ export function orderAlphFunc(games, order) {
 export function orderRatingFunc(games, order) {
     let gameInOrder
     if (order === "ACS") {
-        gameInOrder = [...games.sort((a, b) => {
+        const arrayOrdered = games.sort((a, b) => {
             
             if (a.rating < b.rating) {
                 return 1;
@@ -46,11 +47,12 @@ export function orderRatingFunc(games, order) {
                 return -1;
             }
             return 0
-        })]
+        })
+        gameInOrder = [...arrayOrdered]
         return gameInOrder
     }
     if (order === "DES") {
-        gameInOrder = [...games.sort((a, b) => {
+        const arrayOrdered = games.sort((a, b) => {
             
             if (a.rating > b.rating) {
                 return 1;
@@ -59,7 +61,8 @@ export function orderRatingFunc(games, order) {
                 return -1;
             }
             return 0
-        })]
+        })
+        gameInOrder = [...arrayOrdered]
         return gameInOrder
     }
     return games

@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import style from './Cards.module.css'
 
 import { filter } from '../../functions/filters';
 import { orderAlphFunc, orderRatingFunc } from '../../functions/orders';
+import { setPage } from '../../redux/actions';
 
 import Card from '../Card/Card'
 import Pagination from '../Pagination/Pagination'
 import Order from '../Order/Order';
 import NoGameFound from '../NoGameFound/NoGameFound';
 
-export default function Cards({ games }) {
+export default function Cards({ allGames }) {
 
 
+
+    const dispatch = useDispatch()
     const { currentPage, platformFilter, genreFilter, sourceFilter, orderAlph, orderRating, loading } = useSelector(state => state)
 
-
     const [postPerPage, setPostPerPage] = useState(9)
-
+    
     const indexLastPost = currentPage * postPerPage
     const indexFirstPost = indexLastPost - postPerPage
-
+    
+    const [games, setGames] = useState([...allGames])
     const [currentGame, setCurrentGame] = useState(games.slice(indexFirstPost, indexLastPost))
     const [totalGame, setTotalGame] = useState(games.length)
 
@@ -35,23 +38,39 @@ export default function Cards({ games }) {
             setCurrentGame(gameFilter.slice(indexFirstPost, indexLastPost))
             setTotalGame(gameFilter.length)
         }
+
         if (platformFilter || genreFilter || sourceFilter) {
             set()
         }
-        else {
-            games = orderAlphFunc(games, orderAlph)
-            games = orderRatingFunc(games, orderRating)
-            setCurrentGame(games.slice(indexFirstPost, indexLastPost))
-            setTotalGame(games.length)
+
+        else if (orderAlph || orderRating) {
+            console.log('entre2')
+            setGames([...orderAlphFunc(games, orderAlph)])
+            setGames([...orderRatingFunc(games, orderRating)])
+            // setCurrentGame(games.slice(indexFirstPost, indexLastPost))
+            // setTotalGame(games.length)
         }
 
-    }, [platformFilter, genreFilter, sourceFilter, currentPage, loading, orderAlph, orderRating, games.length,postPerPage])
+        else {
+            console.log('entre')
+            setGames([...allGames])
+            // setCurrentGame(games.slice(indexFirstPost, indexLastPost))
+            // setTotalGame(games.length)
+        }// eslint-disable-next-line
+    }, [platformFilter, genreFilter, sourceFilter, currentPage, loading, orderAlph, orderRating, games.length, postPerPage,allGames])
+
+    useEffect(() => {
+        setCurrentGame(games.slice(indexFirstPost, indexLastPost))
+        setTotalGame(games.length)
+    }, [games,loading])
+
 
     function handlePostPerPage(number) {
         setPostPerPage(number)
+        dispatch(setPage(1))
     }
 
-    
+
 
     return (
         <div className={style.contenedor}>
@@ -59,7 +78,7 @@ export default function Cards({ games }) {
                 <Order handlePostPerPage={handlePostPerPage} />
             </div>
             <div className={style.cards}>
-                {currentGame.length > 0 ? currentGame?.map(e => <Card game={e} key={e.id} />) : <NoGameFound/>}
+                {currentGame.length > 0 ? currentGame?.map(e => <Card game={e} key={e.id} />) : <NoGameFound />}
             </div>
 
             <div className={style.pagination}>

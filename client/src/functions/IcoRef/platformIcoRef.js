@@ -19,7 +19,7 @@ export default function getIconPlataforms(platforms) {
 
 function getIconPlatformById(id) {
 
-    const platform = iconReference.filter(e => e.id == id)
+    const platform = iconReference.filter(e => parseInt(e.id) === parseInt(id))
 
     return platform[0]
 }

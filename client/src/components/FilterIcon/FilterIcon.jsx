@@ -24,7 +24,7 @@ export default function FilterIcon({ title, list, iconConverter, filter }) {
     useEffect(() => {
         if (iconConverter) {
             setIco(iconConverter(list))
-        }
+        }// eslint-disable-next-line
     }, [loading])
 
     function filterAction(id) {
@@ -68,13 +68,13 @@ export default function FilterIcon({ title, list, iconConverter, filter }) {
                 <h3>{title}</h3>
             </div>
             <div>
-                <a className={style.icon} onClick={() => resetFiltersAction()}> -- All -- </a>
+                <em className={style.icon} onClick={() => resetFiltersAction()}> -- All -- </em>
             </div>
             <div className={style.listIcon}>
                 {ico?.map(p => (
-                    <div onClick={() => filterAction(p.id)} className={p.id == select ? style.iconSelected : style.icon}>
+                    <div key={p.id} onClick={() => filterAction(p.id)} className={parseInt(p.id) === parseInt(select) ? style.iconSelected : style.icon}>
                         <FontAwesomeIcon icon={p.icon} key={p.id} />
-                        <a> {p.name}</a>
+                        <em> {p.name}</em>
                     </div>)
                 )
                 }

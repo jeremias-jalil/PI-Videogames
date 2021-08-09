@@ -8,6 +8,6 @@ import NavBar from '../../components/NavBar/NavBar'
 
 export default function NewGame() {
     return (
-        <PageBase title='All your games' topBar={<SearchBar />} leftBar={<NavBar />} body={<NewGameForm/>} />
+        <PageBase title='Add your game' topBar={<SearchBar />} leftBar={<NavBar />} body={<NewGameForm/>} />
     )
 }

@@ -21,7 +21,7 @@ export default function getIconGenre(genre) {
 
 function getIconGenreById(id) {
 
-    const platform = iconReference.filter(e => e.id == id)
+    const platform = iconReference.filter(e => parseInt(e.id) === parseInt(id))
 
     return platform[0]
 }

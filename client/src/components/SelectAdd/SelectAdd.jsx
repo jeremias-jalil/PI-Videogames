@@ -14,7 +14,7 @@ export default function SelectAdd({ name, setGameInfo, gameInfo, list, iconConve
     useEffect(() => {
         setListItem(list)
         setIco(iconConverter(listAdd))
-        setOptionSelect(list[0]?.id)
+        setOptionSelect(list[0]?.id)// eslint-disable-next-line
     }, [list])
 
     useEffect(() => {
@@ -51,11 +51,11 @@ export default function SelectAdd({ name, setGameInfo, gameInfo, list, iconConve
                 </select>
                 <button type='button' onClick={(e) => add(e)}>Add</button>
             </div>
-            <div className={style.icon}>
+            <div >
                 {ico?.map((p, pos) => (
-                    <div className={style.icon} onClick={() => deleteItem({ name }, pos)}>
+                    <div key={p.id} className={style.icon} onClick={() => deleteItem({ name }, pos)}>
                         <FontAwesomeIcon icon={p.icon} key={p.id} />
-                        <a> {p.name}</a>
+                        <em> {p.name}</em>
                     </div>
                 ))
                 }

@@ -2,9 +2,9 @@
 
 import {
     LOADING, ERROR, PAGE, PLATFORMS, GENRE,
-    GET_GAMES, GET_GAMES_BY_NAME, GET_GAMES_BY_ID, RESET_GAME,
+    GET_GAMES, GET_GAMES_BY_NAME, GET_GAMES_BY_ID, RESET_GAME, GAMES_BACKUP,
     RESET_FILTER, FILTER_BY_GENRE, FILTER_BY_SOURCE, FILTER_BY_PLATFORM,
-    ORDER_ALPHABETICALLY_ASC, ORDER_ALPHABETICALLY_DES, ORDER_BY_RATING_ASC, ORDER_BY_RATING_DES
+    ORDER_ALPHABETICALLY_ASC, ORDER_ALPHABETICALLY_DES, ORDER_BY_RATING_ASC, ORDER_BY_RATING_DES, RESET_ORDERS
 } from './constants'
 
 import { getAllGameApi, getAllGenreApi, getAllPlatformApi, getGameByNameApi, getGameByIdApi } from '../functions/api'
@@ -17,7 +17,6 @@ export function setPage(page) {
 
 export function getAllGenre() {
     return (dispatch => (
-
         getAllGenreApi()
             .then(res => {
                 return (
@@ -58,7 +57,6 @@ export function getAllPlatform() {
 
 export function getAllGame(gamesBackUp) {
     return (dispatch => {
-
         dispatch({ type: LOADING })
         if (gamesBackUp.length > 0) {
             dispatch({
@@ -75,6 +73,11 @@ export function getAllGame(gamesBackUp) {
                         type: GET_GAMES,
                         payload: res
                     })
+                    dispatch({
+                        type: GAMES_BACKUP,
+                        payload: res
+                    })
+
                     dispatch({ type: LOADING })
                 }
                 )
@@ -201,4 +204,8 @@ export function orderRatingDes() {
     return (dispatch => dispatch({ type: ORDER_BY_RATING_DES }))
 }
 
+export function resetOrders() {
+
+    return (dispatch => dispatch({ type: RESET_ORDERS }))
+}
 
