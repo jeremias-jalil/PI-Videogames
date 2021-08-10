@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
       type: DataTypes.FLOAT
     },
     image: {
-      type: DataTypes.STRING //validar que sea url
+      type: DataTypes.STRING 
     }
   });
 
