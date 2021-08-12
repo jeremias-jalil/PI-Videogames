@@ -93,3 +93,10 @@
     50% {color:transparent;}
     100% {margin-top: -180px;color:white;}
   }
+
+  @media (max-width: 768px) { 
+    .contenedor{
+        width: 100%;
+    }
+
+  }

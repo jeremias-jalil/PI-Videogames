@@ -31,3 +31,9 @@
     display: flex;
 }
 
+@media (max-width: 768px) { 
+
+    .contenedor select{
+        width: 100%;
+    }
+}

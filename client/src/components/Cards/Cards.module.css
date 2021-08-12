@@ -2,10 +2,13 @@
     
     color: white;
     display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 10vh auto;
-    grid-gap: 0px;
-    
+    grid-template-columns: 1fr; 
+    grid-template-rows: 0.2fr 1.8fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+    "pagination"
+    "cards"; 
+   
     }
     
 .cards{
@@ -13,19 +16,30 @@
     flex-direction: row;
     align-content: flex-start;
     flex-wrap: wrap;
-     
     margin-left: 0px; /* Adjustment for the gutter */
     width: 100%;
-    grid-column: 1/3;
-    grid-row:2/2
+
 }
 
 .pagination{
-    grid-column: 1/2;
-    grid-row:1/1
+    display: flex;
+    flex-direction: row;
+
 }
-.order{
-    grid-column: 2/2;
-    grid-row:1/1;
-    margin-right: 10vh;
+
+
+@media (max-width: 768px) { 
+
+    .contenedor{
+        grid-template-rows: 0.1fr 1.9fr; 
+    }
+    .pagination{
+       flex-direction: column-reverse;
+   }
+
+   .cards{
+    flex-direction: column;
+    align-content: center;
+   }
+
 }

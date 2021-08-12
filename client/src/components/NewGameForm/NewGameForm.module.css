@@ -92,3 +92,26 @@
 .none{
     display: none;
 }
+
+@media (max-width: 768px) { 
+    .form{
+        display: flex;
+        flex-direction: column;
+        max-height: 100%;
+        padding: 20px;
+
+    }
+
+    .selector{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contenedorForm{
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+
+}

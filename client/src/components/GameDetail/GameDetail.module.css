@@ -1,6 +1,5 @@
 .contenedor{
     padding: 20px;
-    
     background-color: rgba(0, 0, 0, 0.685) ;
     display: grid;
     grid-template-columns: 50% 50%;
@@ -48,4 +47,13 @@
 
 .title{
     padding-left: 20px;
+}
+
+
+@media (max-width: 768px) { 
+    .contenedor{
+        display: flex;
+        flex-direction: column;
+    }
+
 }

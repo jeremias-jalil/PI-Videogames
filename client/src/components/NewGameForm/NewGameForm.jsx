@@ -71,7 +71,7 @@ export default function NewGameForm() {
 
     return (
         <div className={style.contenedor}>
-            <form onSubmit={() => saveGame()}>
+            <form className={style.contenedorForm} onSubmit={() => saveGame()}>
                 <div className={style.form}>
                     <div className={style.formItem}>
                         <h5>Name*</h5>

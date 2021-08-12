@@ -70,15 +70,14 @@ export default function Cards({ allGames }) {
 
     return (
         <div className={style.contenedor}>
-            <div className={style.order}>
+
+            <div className={style.pagination}>
+                <Pagination totalGame={totalGame} postPerPage={postPerPage} />
                 <Order handlePostPerPage={handlePostPerPage} />
             </div>
             <div className={style.cards}>
                 {currentGame.length > 0 ? currentGame?.map(e => <Card game={e} key={e.id} />) : <NoGameFound />}
             </div>
 
-            <div className={style.pagination}>
-                <Pagination totalGame={totalGame} postPerPage={postPerPage} />
-            </div>
         </div>)
 }

@@ -6,7 +6,6 @@
     min-height: 100vh;
     background-blend-mode: multiply;
     background-size: cover;
-
     
   }
   
@@ -23,11 +22,17 @@
       grid-row: 2/3;
       z-index: 2;
       padding: 20px;
-      
-      
-  
+
   }
-  
+  .divScreen{
+      color: transparent;
+      display: none;
+  }
+
+  .none{
+      display: none;
+  }
+
   .body{
       background-color: #151515b4;
       grid-column: 2/3;
@@ -35,4 +40,84 @@
       padding: 20px;
   
       color:white;  
+  }
+
+  .menuIco{
+      display: none;
+  }
+
+.divScreen{
+    display: none;
+    }
+
+  @media (max-width: 768px) { 
+    .home{
+        grid-template-columns: 0% 100%;
+    }
+    
+    .home h1{
+        font-size: 20px;
+    }
+    .home h2{
+        font-size: 15px;
+    }
+    .home h3{
+        font-size: 15px;
+    }
+    .home h5{
+        font-size: 15px;
+    }
+
+    .home em{
+        font-size: 15px;
+    }
+
+    .leftBar{
+        display: flex;
+        flex-direction: row;
+        position: fixed;
+        overflow: auto;
+        z-index: 10;
+        padding: 0px;
+        
+        
+    }
+    
+    .menuContentDes{
+        display: none;
+        
+     }
+
+    .menuContentAct{
+        display: block;
+        min-width: 40vw;
+        height: 100vh;
+        padding: 20px;
+        padding-top: 10%;
+        background-color: #151515;
+    }
+
+    .menuIco{
+        display: block;
+        color: white;
+        padding: 20px;
+        position: fixed;
+        background-color: #151515;
+
+    }
+
+    .topBar{
+        padding-left: 10vw;
+       
+    }
+
+    .divScreen{
+        display: block;
+        background-color: rgba(0, 0, 0, 0.295);
+        min-width: 60vw;
+        min-height: 100vh;
+        }
+    .none{
+        display: none;
+    }
   }
