@@ -9,6 +9,8 @@
     width: 50%;
 }
 
-.contenedor img:hover{
-    width: 100%;
+
+.currentImage{
+    width: 100% !important;
+
 }

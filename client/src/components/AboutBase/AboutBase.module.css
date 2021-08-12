@@ -1,0 +1,28 @@
+.contenedor{
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    gap: 0px 10px; 
+    grid-template-areas: 
+   
+      "content image"
+      "content image"; 
+  }
+  .image { 
+    grid-area: image; 
+    
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;}
+
+  .content { 
+    grid-area: content;
+    text-align: justify; 
+
+}
+
+  .contenedor img{
+      width: 300px;
+  }

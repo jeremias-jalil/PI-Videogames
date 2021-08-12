@@ -19,9 +19,17 @@
 .title{
     border-style: solid;
     border-color: white;
-    border-width: 0px 0px 3px 0px
+    border-width: 0px 0px 3px 0px;
+    display: flex;
+    
+    flex-direction: row;
+    justify-content: space-between  ;
+    align-items: center;
 }
 
 .title h3{
     margin-bottom: 5px;
+}
+.null{
+    display: none;
 }
