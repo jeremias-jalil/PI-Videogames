@@ -57,8 +57,8 @@ conn.sync({ force: true }).then(async () => {
       const genresName = Object.keys(apiGenres)
       const platformsName = Object.keys(apiPlatforms)
 
-      const genres = genresName.map(e => { return { name: e } })
-      const platforms = platformsName.map(e => { return { name: e } })
+      const genres = genresName.map((e,pos) => { return { name: e, id: pos*100+1 } })
+      const platforms = platformsName.map((e,pos) => { return { name: e, id: pos*100+1 } })
 
       Genre.bulkCreate(genres)
       Platform.bulkCreate(platforms)

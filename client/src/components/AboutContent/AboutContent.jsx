@@ -2,7 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom';
 import AboutBase from '../AboutBase/AboutBase';
 
-import { Postgresql, PgAdmin, Node, Sequelize, Express, Api, ReactData, ReactRouter, Redux, CSSModule, FontAwesome, GitHub, Heroku, Profile, Proyect, HenryAcademy } from './content';
+import { Postgresql, PgAdmin, Node, Sequelize, Express,Postman, Api, ReactData, ReactRouter, Redux, CSSModule, FontAwesome, GitHub, Heroku, Profile, Proyect, HenryAcademy } from './content';
 
 export default function AboutContent() {
     return (
@@ -21,6 +21,9 @@ export default function AboutContent() {
             </Route>
             <Route exact path='/about/Express'>
                 <AboutBase content={Express}/>
+            </Route>
+            <Route exact path='/about/Postman'>
+                <AboutBase content={Postman}/>
             </Route>
             <Route exact path='/about/Api'>
                 <AboutBase content={Api}/>

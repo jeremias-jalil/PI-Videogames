@@ -12,6 +12,7 @@ export const backList = [
     { id: 'Node' },
     { id: 'Sequelize' },
     { id: 'Express' },
+    { id: 'Postman' },
     { id: 'Api' }
 ]
 

@@ -22,6 +22,13 @@ export default function AddImages({setGameInfo, gameInfo}) {
         setGameInfo({ ...gameInfo, short_screenshots: listItem })// eslint-disable-next-line
     }, [listItem])
 
+
+    function deleteItem(pos) {
+        const list = [...listItem]
+        list.splice(pos, 1)
+        setListItem(list)
+    }
+
     return (
         <div className={style.form}>
             <div className={style.input}>
@@ -29,8 +36,10 @@ export default function AddImages({setGameInfo, gameInfo}) {
                 <button type='button' onClick={() => addImage()}>Add</button>
             </div>
             <div className={style.images}>
-                {listItem.map(e => (
-                    <img src={e} alt={e}/>
+                {listItem.map((e,pos) => (
+
+                    <img src={e} alt={e} onClick={() => deleteItem(pos)}/>
+
                 ))}
             </div>
         </div>

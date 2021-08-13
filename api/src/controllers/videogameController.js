@@ -48,10 +48,12 @@ function extractDataApi(game) {
             id: game.id,
             name: game.title,
             dateRelease: game.release_date,
-            platforms: game.platform,
-            genre: game.genre,
+            rating:1,
+            platforms: [{id: game.platform, name:game.platform}],
+            genres: [{id: game.genre, name:game.genre}],
             image: game.thumbnail,
-            description: game.description || game.short_description
+            description: game.description || game.short_description,
+            short_screenshots:game.screenshots || [],
         }
     }
 }
@@ -117,9 +119,9 @@ async function getGames() {
 
     if (API == 2) {
         try {
-            console.log('entre')
+
             gamesApiResults = await axios.get('https://www.freetogame.com/api/games')
-            console.log(gamesApiResults)
+
         }
         catch (err) {
             console.log('api', err)
@@ -202,7 +204,7 @@ async function searchById(search) {
         if (API == 2) {
             try {
                 const gamesApiResults = await axios.get(`https://www.freetogame.com/api/game?id=${search}`)
-                return extractDataApi(gamesApiResults)
+                return extractDataApi(gamesApiResults.data)
             }
 
             catch (err) {

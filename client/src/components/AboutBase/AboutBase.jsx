@@ -9,8 +9,12 @@ export default function AboutBase({ content }) {
     const aplication = content.aplication
     const link = content.link
 
-    function summary() {
+    function summaryDescription() {
         return { __html: description };
+    }
+
+    function summaryAplication() {
+        return { __html: aplication };
     }
 
     return (
@@ -22,13 +26,13 @@ export default function AboutBase({ content }) {
             </div>
             <div className={style.content}>
                 <h2>{title}</h2>
-                <div dangerouslySetInnerHTML={summary()} />
+                <div dangerouslySetInnerHTML={summaryDescription()} />
                 <a href={link} target='_blank' rel="noreferrer">Oficial page</a>
 
                 {aplication ?
                     <div>
                         <h3>Aplication in project</h3>
-                        <p>{aplication}</p>
+                        <div dangerouslySetInnerHTML={summaryAplication()} />
                     </div> :
                     <div></div>
                 }

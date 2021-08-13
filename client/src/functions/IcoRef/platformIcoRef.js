@@ -3,13 +3,15 @@ import { faPlaystation, faXbox, faApple, faAndroid, faLinux } from "@fortawesome
 
 export default function getIconPlataforms(platforms) {
 
-    if (platforms) {
+    if (platforms instanceof Array) {
         let iconPlatform
         if (platforms[0]?.id) {
             iconPlatform = platforms.map(e => getIconPlatformById(e.id, e.name))
+
         } else {
-            iconPlatform = platforms.map(e => getIconPlatformById(e))
+            iconPlatform = platforms.map(e => getIconPlatformById(e, e))
         }
+
         return iconPlatform
     }
     else {
@@ -34,6 +36,7 @@ const iconNull = [
 
 
 const iconReference = [
+
     {
         id: 1,
         name: "PC",
@@ -104,5 +107,21 @@ const iconReference = [
         id: 14,
         name: "Web",
         icon: faGlobe
-    }
+    },
+    {
+        id: "PC (Windows)",
+        name: "PC (Windows)",
+        icon: faDesktop
+    },
+    {
+        id: "PC (Windows), Web Browser",
+        name: "PC (Windows), Web Browser",
+        icon: faDesktop
+    },
+    {
+        id: "Web Browser",
+        name: "Web Browser",
+        icon: faGlobe
+    },
+    
 ]

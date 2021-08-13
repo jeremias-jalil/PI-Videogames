@@ -61,6 +61,11 @@ const aboutIcon = [
         icon: faFileCode
     },
     {
+        id: 'Postman',
+        name: 'Postman',
+        icon: faFileCode
+    },
+    {
         id: 'Api',
         name: 'Api',
         icon: faFileCode

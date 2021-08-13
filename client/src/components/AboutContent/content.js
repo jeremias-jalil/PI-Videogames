@@ -2,6 +2,7 @@ import PostgresqlLogo from './images/postgresql-logo.png'
 import NodeLogo from './images/Node.js_logo.png'
 import SequelizeLogo from './images/sequelize-logo-small.png'
 import ExpressLogo from './images/express.png'
+import PostmanLogo from './images/postman-logo.png'
 import ApiLogo from './images/rawg.jpg'
 import ReactDataLogo from './images/React.png'
 import ReactRouterLogo from './images/reactrouter.png'
@@ -52,6 +53,14 @@ export const Express = {
     description:'<p>Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.</p>',
     aplication:'',
     link:'https://expressjs.com/'
+}
+
+export const Postman = {
+    title: 'Postman',
+    logo: PostmanLogo,
+    description:'<p>Postman is an API platform for building and using APIs. Postman simplifies each step of the API lifecycle and streamlines collaboration so you can create better APIs—faster..</p>',
+    aplication:'<a href="https://documenter.getpostman.com/view/16696292/Tzz7PHwE" target="_blank">Routes documentation<a>',
+    link:'https://www.postman.com/'
 }
 
 export const Api = {

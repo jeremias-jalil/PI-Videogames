@@ -92,7 +92,7 @@ export default function GameDetail({ id }) {
                     <div dangerouslySetInnerHTML={summary()} />
                 </div>
                 <div>
-                    {id * 1 ? "" : <button onClick={e => gameDelete(e)}>Borrar juego</button>}
+                    {id * 1 ? "" : <button onClick={e => gameDelete(e)}>Delete game</button>}
                 </div>
             </div>
             <div>

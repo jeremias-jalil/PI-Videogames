@@ -6,13 +6,13 @@ import {
 
 export default function getIconGenre(genre) {
 
-    if (genre) {
+    if (genre instanceof Array) {
         let iconPlatform
         if (genre[0]?.id) {
             iconPlatform = genre.map(e => getIconGenreById(e.id,e.name))
         }
         else {
-            iconPlatform = genre.map(e => getIconGenreById(e))
+            iconPlatform = genre.map(e => getIconGenreById(e,e))
         }
         return iconPlatform
     } else {
@@ -29,7 +29,7 @@ function getIconGenreById(id,name) {
 const iconNull = [
     {
         id: 0,
-        name: "",
+        name: "No icon",
         icon: faAd
     },
 ]

@@ -35,3 +35,10 @@
 .images img{
     width: 100%
 }
+
+.images img:hover{
+    color:red;
+    filter: grayscale(100%)
+
+}
+
