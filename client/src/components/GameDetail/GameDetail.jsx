@@ -34,10 +34,18 @@ export default function GameDetail({ id }) {
 
     function gameDelete(e) {
         e.preventDefault()
-        deleteGame(id)
-        history.push('/home')
-        dispatch(getAllGame([]))
+        const opcion = window.confirm("do you want to delete the game? ");
+        gameDeleteOk(opcion)
     }
+    function gameDeleteOk(opcion) {
+        if (opcion) {
+            deleteGame(id)
+            history.push('/home')
+            dispatch(getAllGame([]))
+        }
+        else { }
+    }
+
 
     function summary() {
         return { __html: game.description };
@@ -45,9 +53,9 @@ export default function GameDetail({ id }) {
 
 
     return (
-        <div  className={style.contenedor}>
+        <div className={style.contenedor}>
             <div>
-                <div className={style.title}> 
+                <div className={style.title}>
                     <h1>{game.name}</h1>
                 </div>
                 <div className={style.data}>
@@ -96,7 +104,7 @@ export default function GameDetail({ id }) {
                 </div>
             </div>
             <div>
-                <Galery images={game.short_screenshots}/>
+                <Galery images={game.short_screenshots} />
             </div>
         </div>
     )

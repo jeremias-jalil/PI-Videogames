@@ -27,7 +27,7 @@ const { API_KEY, API } = process.env;
 
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(async () => {
+conn.sync({ force: false }).then(async () => {
   // precarga de los generos de los juegos
   if (API == 1) {
     try {
