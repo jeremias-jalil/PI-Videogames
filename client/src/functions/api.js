@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BACK_SERVER = "http://pqnkridlha.us15.qoddiapp.com";
+const BACK_SERVER =
+  process.env.REACT_APP_BACK_SERVER || "http://localhost:3035";
 
 export async function getAllGameApi() {
   try {
