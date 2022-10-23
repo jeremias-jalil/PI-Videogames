@@ -28,7 +28,7 @@ export default function reducer(state = initialState, action) {
         case LOADING:
             return {
                 ...state,
-                loading: !state.loading
+                loading: action.payload || !state.loading
             }
 
         case ERROR: //ver como ir manejando este error. 

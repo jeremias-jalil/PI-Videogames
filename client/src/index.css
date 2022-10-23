@@ -119,3 +119,12 @@ button:hover {
     transform: translate(0);
   }
 }
+
+@media (max-width: 768px) { 
+  .buttonLanding, .buttonLanding::after {
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    line-height: 10px;
+  }
+}

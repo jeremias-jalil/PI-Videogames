@@ -1,49 +1,90 @@
-require('dotenv').config();
-const { Sequelize } = require('sequelize');
-const fs = require('fs');
-const path = require('path');
+require("dotenv").config();
+const { Sequelize } = require("sequelize");
+const fs = require("fs");
+const path = require("path");
 const {
-  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
+  DATABASE_URL,
+  DB_USER,
+  DB_PASSWORD,
+  DB_HOST,
+  DB_HOST_PORT,
+  DB_DATABASE,
+  DB_DIALECT,
 } = process.env;
+const { Client } = require("pg");
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+const client = new Client({
+  connectionString: DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
+
+client.connect();
+
+client.query(
+  "SELECT table_schema,table_name FROM information_schema.tables;",
+  (err, res) => {
+    if (err) throw err;
+    for (let row of res.rows) {
+      console.log(JSON.stringify(row));
+    }
+    client.end();
+  }
+);
+
+const sequelize = new Sequelize(
+  DATABASE_URL ||
+    `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_HOST_PORT}/${DB_DATABASE}`,
+  {
+    logging: false,
+    native: false,
+  }
+);
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
 
-// Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
-fs.readdirSync(path.join(__dirname, '/models'))
-  .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
+fs.readdirSync(path.join(__dirname, "/models"))
+  .filter(
+    (file) =>
+      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
+  )
   .forEach((file) => {
-    modelDefiners.push(require(path.join(__dirname, '/models', file)));
+    modelDefiners.push(require(path.join(__dirname, "/models", file)));
   });
 
-// Injectamos la conexion (sequelize) a todos los modelos
-modelDefiners.forEach(model => model(sequelize));
-// Capitalizamos los nombres de los modelos ie: product => Product
+modelDefiners.forEach((model) => model(sequelize));
+
 let entries = Object.entries(sequelize.models);
-let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
+let capsEntries = entries.map((entry) => [
+  entry[0][0].toUpperCase() + entry[0].slice(1),
+  entry[1],
+]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// En sequelize.models están todos los modelos importados como propiedades
-// Para relacionarlos hacemos un destructuring
-const { Videogame, Genre, Platform, Short_screenshot } = sequelize.models;
+const { Videogame, Genre, Platform, Short_screenshot, Apivideogame } =
+  sequelize.models;
 
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-Videogame.belongsToMany(Genre, { through: 'videogame_genre' })
-Genre.belongsToMany(Videogame, { through: 'videogame_genre' })
+Apivideogame.belongsToMany(Genre, { through: "apivideogame_genre" });
+Genre.belongsToMany(Apivideogame, { through: "apivideogame_genre" });
 
-Videogame.belongsToMany(Platform, { through: 'videogame_paltform' })
-Platform.belongsToMany(Videogame, { through: 'videogame_paltform' })
+Apivideogame.belongsToMany(Platform, { through: "apivideogame_paltform" });
+Platform.belongsToMany(Apivideogame, { through: "apivideogame_paltform" });
 
-Videogame.hasMany(Short_screenshot)
-Short_screenshot.belongsTo(Videogame)
+Apivideogame.hasMany(Short_screenshot);
+Short_screenshot.belongsTo(Apivideogame);
+
+Videogame.belongsToMany(Genre, { through: "videogame_genre" });
+Genre.belongsToMany(Videogame, { through: "videogame_genre" });
+
+Videogame.belongsToMany(Platform, { through: "videogame_paltform" });
+Platform.belongsToMany(Videogame, { through: "videogame_paltform" });
+
+Videogame.hasMany(Short_screenshot);
+Short_screenshot.belongsTo(Videogame);
 
 module.exports = {
-  ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-  conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
+  ...sequelize.models,
+  conn: sequelize,
 };

@@ -47,3 +47,14 @@
     margin: 0px;
     
 }
+
+@media (max-width: 768px) { 
+  .contenedor img{
+    width: 200px;
+  }
+
+  .button{
+    width: 140px;
+  }
+
+}

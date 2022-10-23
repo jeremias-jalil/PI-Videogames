@@ -1,76 +1,42 @@
-//                       _oo0oo_
-//                      o8888888o
-//                      88" . "88
-//                      (| -_- |)
-//                      0\  =  /0
-//                    ___/`---'\___
-//                  .' \\|     |// '.
-//                 / \\|||  :  |||// \
-//                / _||||| -:- |||||- \
-//               |   | \\\  -  /// |   |
-//               | \_|  ''\---/''  |_/ |
-//               \  .-\__  '-'  ___/-. /
-//             ___'. .'  /--.--\  `. .'___
-//          ."" '<  `.___\_<|>_/___.' >' "".
-//         | | :  `- \`.;`\ _ /`;.`/ - ` : | |
-//         \  \ `_.   \_ __\ /__ _/   .-` /  /
-//     =====`-.____`.___ \_____/___.-`___.-'=====
-//                       `=---='
-//     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-require('dotenv').config();
-const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
-const axios = require('axios');
-const { Genre, Platform } = require('./src/db');
-const e = require('express');
-const { API_KEY, API,PORT } = process.env;
+require("dotenv").config();
+const server = require("./src/app.js");
+const { conn } = require("./src/db.js");
+const axios = require("axios");
+const { Pi_Genre, Pi_Platform } = require("./src/db");
+const e = require("express");
+const { API_KEY, PORT } = process.env;
+const { apiGamePreload } = require("./src/controllers/videogameController");
+const bulean = false;
 
+conn.sync({ force: bulean }).then(async () => {
+  try {
+    const validation = await Pi_Genre.findAll();
+    if (!validation.length) {
+      const apiGenresResponse = await axios.get(
+        `https://api.rawg.io/api/genres?key=${API_KEY}`
+      );
+      const apiGenres = apiGenresResponse.data.results;
+      const genres = apiGenres.map((e) => {
+        return { id: e.id, name: e.name };
+      });
+      Pi_Genre.bulkCreate(genres);
 
-// Syncing all the models at once.
-conn.sync({ force: false }).then(async () => {
-  // precarga de los generos de los juegos
-  if (API == 1) {
-    try {
-      const apiGenresResponse = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
-      const apiGenres = apiGenresResponse.data.results
-      const genres = apiGenres.map(e => { return { id:e.id,name: e.name } })
-      Genre.bulkCreate(genres)
+      const apiPlatformsResponse = await axios.get(
+        `https://api.rawg.io/api/platforms/lists/parents?key=${API_KEY}`
+      );
+      const apiPlatforms = apiPlatformsResponse.data.results;
+      const platforms = apiPlatforms.map((e) => {
+        return { id: e.id, name: e.name };
+      });
+      Pi_Platform.bulkCreate(platforms);
 
-      const apiPlatformsResponse = await axios.get(`https://api.rawg.io/api/platforms/lists/parents?key=${API_KEY}`)
-      const apiPlatforms = apiPlatformsResponse.data.results
-      const platforms = apiPlatforms.map(e => { return { id:e.id, name: e.name } })
-      Platform.bulkCreate(platforms)
+      await apiGamePreload();
     }
-    catch (err) {
-      console.log(err)
-    }
-  }
-
-  if (API == 2) {
-    try {
-      const apiGenresResponse = await axios.get(`https://www.freetogame.com/api/games`)  
-      
-      let apiGenres = {}
-      let apiPlatforms = {}
-      apiGenresResponse.data.forEach(e => { return (apiGenres[e.genre] = e.genre, apiPlatforms[e.platform] = e.platform) })
-        
-      const genresName = Object.keys(apiGenres)
-      const platformsName = Object.keys(apiPlatforms)
-
-      const genres = genresName.map((e,pos) => { return { name: e, id: pos*100+1 } })
-      const platforms = platformsName.map((e,pos) => { return { name: e, id: pos*100+1 } })
-
-      Genre.bulkCreate(genres)
-      Platform.bulkCreate(platforms)
-    }
-    catch (err) {
-      console.log(err)
-    }
-
-
+  } catch (err) {
+    console.log(err);
   }
 
   server.listen(PORT || 3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+    console.log("%s listening at 3001"); // eslint-disable-line no-console
   });
 });

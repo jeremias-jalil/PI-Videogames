@@ -16,8 +16,9 @@ export default function Home() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getAllGame(gamesBackUp)) // eslint-disable-next-line
-    }, []) 
+        if(!loading){
+        dispatch(getAllGame(gamesBackUp))} // eslint-disable-next-line
+    }, [loading]) 
 
     return (
         <PageBase title='All your games' topBar={<SearchBar />} leftBar={<NavBar />} body={loading?<Loading/>:<Cards allGames={allGames} />} />
